@@ -1,0 +1,40 @@
+@import url('https://fonts.cdnfonts.com/css/minecraft-4');
+
+body {
+	background: darkcyan;
+}
+
+#intro-text {
+	font-size: 30px;
+	font-family: Segoe UI Semibold;
+	background: cyan;
+	margin:30px;
+	padding:10px;
+	
+}
+
+#banner {
+    width: 102%;
+    margin: -1%;
+    padding: 0;
+    height: 84%;
+}
+
+#bantext {
+    font-family: "Minecraft";
+    color: white;
+    background: black;
+    margin: -1%;
+    padding: 0.5%;
+    vertical-align: middle;
+    top: 80%;
+    width: 100%;
+    text-align: center;
+}
+
+#banner {
+    width: 100%;
+    margin: -1%;
+    padding: 0;
+    height: 84%;
+}

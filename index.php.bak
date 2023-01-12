@@ -1,0 +1,47 @@
+<html><head>
+<style>
+@import url('https://fonts.cdnfonts.com/css/minecraft-4');
+
+#banner {
+    width: 102%;
+    margin: -1%;
+    padding: 0;
+    height: 84%;
+}
+
+#bantext {
+    font-family: "Minecraft";
+    color: white;
+    background: darkcyan;
+    margin: -1%;
+    padding: 0.5%;
+    vertical-align: middle;
+    top: 80%;
+    width: 100%;
+    text-align: center;
+}
+
+#banner {
+    width: 100%;
+    margin: -1%;
+    padding: 0;
+    height: 84%;
+}
+
+</style>
+</head>
+
+<body>
+<h1 id="bantext">Minecraft Engineering!</h1>
+
+<p>
+
+Hi! I'm Saen and I'm a coder studying Computer Science at degree level. I am also an avid Minecraft player of 10+ years. I will be using this space to document the many hobby projects I create within the scope of the game, many of which often involve extensive use of mods, server administration, plugins and redstone engineering.
+
+I try to keep all of my hobby projects neatly tied up into one server.
+
+One of the things I've always loved about Minecraft is the almost ridiculous ability to do absolutely <i>anything.</i> Some of my most recent hobby projects involve the construction of a large railway network
+
+</p>
+
+</body></html>
