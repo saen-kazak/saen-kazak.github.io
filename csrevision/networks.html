@@ -1,0 +1,286 @@
+<style>
+
+p { font-family:Segoe UI; Arial;}
+
+h3, h2, h1, strong { font-family:Segoe UI Semibold; }
+
+
+
+body {
+    position: absolute;
+    left: 23%;
+    right: 23%;
+    top: 8%;
+}
+
+div {
+    background: white;
+    padding-left: 10%;
+    border-radius: 4vw;
+    padding-right: 10%;
+    padding-top: 5%;
+}
+
+@media only screen and (max-width: 1024px) {
+  body {
+    position: absolute;
+    left: 0;
+    right: 0;
+	top:0;
+	padding:0;
+	margin:0;
+  }
+  
+  div {
+  border-radius: 0px;
+	}
+	
+	
+  
+}
+
+</style>
+<body><div>
+<h1 id="-span-style-text-decoration-underline-3px-blue-text-underline-offset-10px-margin-0-internet-components-services-span-"><span style="text-decoration: underline 3px blue;text-underline-offset:10px;margin:0;">Internet Components &amp; Services</span></h2>
+<p>The internet can be thought of as a network of networks, with interconnected ISPs that provide services to applications such as Email, Web, VoIP etc.</p>
+<p>Computing devices are known as <strong>hosts</strong>, which are connected through <strong>communication links.</strong> Examples include fiber, radio, satellite etc.</p>
+<p><strong>Links</strong> have a tramission rate, known as <strong>bandwidth.</strong></p>
+<p><strong>Packet Switches</strong> such as <strong>Routers</strong> and <strong>Switches</strong> forward data to the correct path.</p>
+<p><strong>Protocols</strong> such as HTTP and TCP are a set of rules controlling the sending and receiving of messages.</p>
+<h2 id="internet-standards-rfc-and-ietf">Internet Standards - RFC and IETF</h2>
+<p><strong>Internet Standards</strong> include RFC (Request for Comments) and IETF (Internet Engineering Task Force).</p>
+<p>When engineers are working on a protocol such as TCP, IETF will produce a draft of the entire process and publish it globally as an RFC. The RFC then provides a set of steps to allow others to implement TCP, creating <strong>Interoperability.</strong></p>
+<h1 id="-span-style-text-decoration-underline-3px-blue-text-underline-offset-10px-margin-0-protocols-and-layers-span-"><span style="text-decoration: underline 3px blue;text-underline-offset:10px;margin:0;">Protocols and Layers</span></h1>
+<h2 id="osi-model">OSI Model</h2>
+<p>Not used any more, includes seven layers.
+Was created to standardise communication between vendors.</p>
+<ol>
+<li>Application (HTTP, SMTP, Telnet)</li>
+<li>Presentation (Encryption, Compression)</li>
+<li>Session (Start, Stop)</li>
+<li>Transport (TCP, UDP, Port Numbers)</li>
+<li>Network (IP)</li>
+<li>Data Link (Ethernet, WiFi, etc.)</li>
+<li>Physical (Cables, NICs, Hubs)</li>
+</ol>
+<h2 id="tcp-ip-model">TCP/IP Model</h2>
+<p>Does not include <strong>Presentation</strong> and <strong>Session</strong>
+Used today.</p>
+<p>In the Application Layer we simply have <strong>data</strong>.
+When passed to the Transport layer, we add a <strong>TCP header.</strong>
+The data is now known as a <strong>segment.</strong>
+In the Network layer, an <strong>IP Header</strong> is added with the source and destination.
+The data is now known as a <strong>packet.</strong>
+In the data link layer, a source and destination <strong>MAC Address</strong> are added.
+The packet is now known as a <strong>frame.</strong>
+The data is physically sent via the Physical Layer.</p>
+<h1 id="-span-style-text-decoration-underline-3px-blue-text-underline-offset-10px-margin-0-principles-of-network-applications-span-"><span style="text-decoration: underline 3px blue;text-underline-offset:10px;margin:0;">Principles of Network Applications</span></h1>
+<p>The Application Layer can communicate via <strong>Peer-To-Peer</strong> or <strong>Client/Server</strong> relations.</p>
+<h2 id="peer-to-peer">Peer-To-Peer</h2>
+<p>There is no reliance on dedicated servers. Instead, the application directly communicates between pairs of connected hosts.</p>
+<p>Peer-To-Peer applications have a <strong>scalability</strong> advantage since each host added will add capacity to the network. However, they are heavily disadvantaged in <strong>security</strong> and <strong>reliability</strong> due to being highly decentralised.</p>
+<p>Applications such as BitTorrent or Skype make use of P2P architecture.</p>
+<h2 id="client-server">Client/Server</h2>
+<p>Server is a dedicated always-on host with a permanent IP address.
+Clients do not interact with each other directly.
+All requests are passed through the server.</p>
+<p>Client/Server applications have an advantage in <strong>security</strong> and <strong>performance</strong> due to being centralised. Applications such as HTTP and SMTP make use of Client/Server architecture.</p>
+<h2 id="processes-sockets-ports">Processes, Sockets &amp; Ports</h2>
+<p>A <strong>process</strong> can be thought of as a program that runs in the end-user&#39;s system.</p>
+<p>The <strong>Client Process</strong> initiates communication.
+The <strong>Server Process</strong> waits to be contacted.</p>
+<p>Processes can communicate with other processes:</p>
+<ul>
+<li>on the <strong>same system</strong>; this is known as an <strong>inter-process communication</strong></li>
+<li>on <strong>different systems</strong>; this requires message exchanging</li>
+</ul>
+<p>Processes use <strong>sockets</strong> to send and receive data. Each process will have its own socket on both the sending and receiving side.</p>
+<p>Sockets can be thought of like the name of the person that mail is being delivered to within the same residence. As long as the infrastructure is there, the message will be delivered.</p>
+<p>Processes have an <strong>identifier</strong> including an <strong>IP Address</strong> and a <strong>port number</strong>.
+Some port numbers are reserved for important services or protocols such as port 80 for HTTP or port 25 for SMTP.</p>
+<p><strong>Defining an Application Layer Protocol</strong> requires us to define what type of message is being exchanged (request or response), the syntax of the message, the meaning of information in the message and rules for sending and receiving.</p>
+<p>Protocols are either <strong>proprietary</strong> or <strong>open-source</strong>.
+Open-source protocols are defined in RFC (such as HTTP).
+Proprietary protocols are owned by companies and are restricted from the public (such as Zoom or WhatsApp).</p>
+<h2 id="transport-layer-service-requirements">Transport Layer Service Requirements</h2>
+<p><strong>Data Integrity:</strong> Some apps require 100% reliable data transfer (e.g. file sharing) whilst others are loss-tolerant (e.g. audio streaming).</p>
+<p><strong>Latency/Timing:</strong> Some apps require very little latency (such as gaming).</p>
+<p><strong>Throughput (Transfer Rate):</strong> Some apps require a minimum transfer rate (bits/second) whereas others will tolerate lower throughput. <strong>Elastic applications</strong> can tolerate any throughput</p>
+<p><strong>Security:</strong> Some apps may require encryption whereas others may not.</p>
+<h2 id="tcp-vs-udp">TCP vs UDP</h2>
+<p>TCP is used for reliable data transfer.
+TCP is connection-oriented meaning a <strong>handshake</strong> will take place before any messages are sent. This confirms the connection has been established.
+TCP <strong>guarantees</strong> 100% reliable transport, flow control (message limiting) and network congestion control.
+TCP <strong>does not guarantee</strong> latency control, minimum throughput or security.</p>
+<p>UDP is much more lightweight and does <strong>not</strong> make use of a handshake.
+UDP transfer <strong>does not guarantee</strong> congestion control or any of TCP&#39;s guarantees but is often preferred when transfer speed is prioritised over accuracy.</p>
+<h2 id="security-in-tcp-udp">Security in TCP / UDP</h2>
+<p>Since TCP does not guarantee security natively, we can provide security separately.</p>
+<p>TCP Sockets can either be <strong>Vanilla</strong> or make use of <strong>TLS - Transport Layer Security.</strong>
+TLS is a modern alternative to the older <strong>SSL - Secure Sockets Layer</strong>.</p>
+<p>TLS <strong>cannot</strong> be placed on top of <strong>UDP</strong> since TLS does not deal with packet loss.</p>
+<h2 id="ip-addressing-subnets">IP Addressing &amp; Subnets</h2>
+<p><strong>IP Addresses</strong> consist of four segments comprising a 32-bit number. Since each segment is 8 bits, we can represent them as a value between 0 and 255, such as 192.168.137.30.
+The segments specify the <strong>unique number</strong> assigned to a network, as well as the <strong>network class</strong>.</p>
+<blockquote>
+<p>192.168 classifies a Class C local network
+169.254&#39; classifies a local network without a connection to DHCP. 
+The last segment usually specifies the <strong>host</strong> on the network.</p>
+</blockquote>
+<p>The <strong>Subnet Mask</strong> is a 32-bit value specifying which portions of the IP Address comprise the host and the network, since this is not fixed within TCP/IP.</p>
+<blockquote>
+<p><strong>255.255.255.0</strong> specifies that the first three segments are the network and the last segment is the host.</p>
+</blockquote>
+<p>Networks are categorised in five different classes, with Class A being used for the largest networks and Class C being used for the smallest. Class D is for multicast groups and Class E is reserved for future use.</p>
+<h2 id="ipv4-and-ipv6">IPv4 and IPv6</h2>
+<h1 id="-span-style-text-decoration-underline-3px-blue-text-underline-offset-10px-margin-0-transport-layer-services-span-"><span style="text-decoration: underline 3px blue;text-underline-offset:10px;margin:0;">Transport Layer Services</span></h1>
+<h2 id="data-integrity-tcp-">Data Integrity (TCP)</h2>
+<p>Data Integrity refers to detecting whether a message has been changed in transit.
+Data Integrity is provided through <strong>hashing</strong>.</p>
+<p>As well as the message being sent, the sender will also send a calculated hash to the receiver using a common hashing algorithm such as MD5 or SHA-1.
+If the hash is the same, the message has not been changed and retains its integrity.</p>
+<p>In order to prevent interception, a <strong>public key</strong> and a <strong>private key</strong> are used together. The public key is included in a TLS certificate and can be viewed by anyone on the network. The private key is calculated from the public key and is kept confidential.
+If both keys match, the message has not been tampered with.</p>
+<p>This also allows for <strong>authentication</strong> to take place in the transport layer.</p>
+<p>The industry standard for data integrity and authentication is known as <strong>Hash-Based Message Authentication Code</strong> or <strong>HMAC</strong>.</p>
+<h2 id="multiplexing-and-demultiplexing">Multiplexing and Demultiplexing</h2>
+<p>Sometimes we have multiple applications sending data to the same destination. In this scenario we can use <strong>multiplexing</strong> and <strong>demultiplexing</strong> to package the data from different processes into one packet. In order to do this, the port number is required for each service.</p>
+<p>For example, if we are sending emails via both Yahoo and Gmail, the messages from both processes will need individual headers with their respective (different) destination IPs and port numbers. The messages will be wrapped and sent as a single message. This is <strong>multiplexing</strong>. At the destination, the messages will be unwrapped and the port number will be read to send each constituent part to the correct process. This is <strong>demultiplexing.</strong></p>
+<p>In UDP, only the <strong>destination port number</strong> is provided since UDP is <strong>connectionless</strong>.</p>
+<p>Multiplexing and Demultiplexing take place in the transport layer.</p>
+<h2 id="tcp-handshaking">TCP Handshaking</h2>
+<p>TCP handshakes are a 3-way process.</p>
+<ol>
+<li>The sender will send a <strong>SYN</strong> (Synchronize) message to the receiver.</li>
+<li>The receiver will send back a <strong>SYN-ACK</strong> (Acknowledgement) message</li>
+<li>The sender will then send an <strong>ACK-RECEIVED</strong> message and data can start to be delivered.</li>
+</ol>
+<p>The SYN message contains a <strong>sequence number</strong> for each byte that is sent within a TCP package.</p>
+<p>An <strong>acknowledgement number</strong> also exists which indicates the next expected sequence number.</p>
+<p>Upon initiating a connection, the sequence number is set to 0. When the server returns the first SYN-ACK segment, it should have an acknowledgement number of 1.</p>
+<p>Once the client has returned the first ACK-RECEIVED segment, this should have an acknowledgement number of 2.</p>
+<p>Use of sequencing means that if a packet fails to be delivered, TCP will know to resend it.</p>
+<p>The server can also send a <strong>FIN</strong> message to <strong>terminate the connection</strong>. This must also be acknowledged by the client, which then sends back its own <strong>FIN</strong> message.</p>
+<blockquote>
+<p><em>HTTP connections can be <strong>persistent</strong> or <em>*non-persistent</em></em>. Typically, persistent connections are used, but non-persistent functionality does exist within the HTTP standard.</p>
+<p>Persistent connections will use the same TCP connection for all data transfer.</p>
+<p>Non-persistent connections will create and destroy TCP connections on an as-required basis.</p>
+</blockquote>
+<h1 id="-span-style-text-decoration-underline-3px-blue-text-underline-offset-10px-margin-0-forwarding-and-routing-span-"><span style="text-decoration: underline 3px blue;text-underline-offset:10px;margin:0;">Forwarding and Routing</span></h1>
+<p><strong>Forwarding</strong> can be thought of as moving packets between different servers.
+<strong>Routing</strong> can be thought of as building the directional maps that will be used during forwarding.</p>
+<p>The forwarding table usually contains destination addresses and local requirements, as well as the routing process. This is used to build the <strong>global routing table.</strong> The <strong>forwarding information base (FIB)</strong> is then built from this and is used to figure out where a packet should be sent.</p>
+<h2 id="routing-algorithms">Routing Algorithms</h2>
+<p>The Network Layer (IP) processes forwarding via the <strong>data plane</strong>. Routing is processed via the <strong>control plane</strong>. This provides information to the data plane to allow it to make the correct forwarding decisions.</p>
+<p>The control plane traditionally runs in all routers and uses distributed algorithms to determine the routing paths. However, a more modern approach involves using centralised control planes via <strong>software-defined networking approaches.</strong></p>
+<ul>
+<li>Link State is a routing algorithm that make use of a <strong>cost</strong> to determine the best routing techniques.</li>
+<li>Distance Vector is a routing algorithm that uses the physical vector distance between routers to determine the best routes.</li>
+</ul>
+<h2 id="router-components">Router Components</h2>
+<p>Routers consist of <strong>input ports</strong>, a <strong>routing processor</strong>, a <strong>high speed switching fabric</strong> and <strong>output ports</strong>. Forwarding directs the datagram from input ports to output ports. Routing determines actualistic paths and destinations.</p>
+<p>Input Ports consist of the following components:</p>
+<ul>
+<li><strong>Line Termination</strong> in the Physical layer where the datagrams are received</li>
+<li><strong>Link Layer Protocol</strong> where the datagram receives a link layer frame</li>
+<li><strong>Lookup and Forwarding</strong>, which determines where the data needs to go using the forwarding table and the destination.</li>
+</ul>
+<p><strong>Queues</strong> can occur in lookups and forwarding if datagrams arrive too fast.
+Datagrams can be lost this way if queues are maxed out.</p>
+<p>Once data has traversed the input ports, it will be sent to the <strong>switching fabric</strong>.
+The switching fabric&#39;s job is to <strong>transfer packets</strong> from the input queue to the output queue.
+The speed at which this happens is the <strong>switching rate</strong>.</p>
+<p>Output Ports are schematically the reverse of input ports. Data can also be lost if the buffers/queues become maxed out.</p>
+<h1 id="operating-systems">Operating Systems</h1>
+<h1 id="-span-style-text-decoration-underline-3px-lightblue-text-underline-offset-10px-margin-0-os-services-span-"><span style="text-decoration: underline 3px lightblue;text-underline-offset:10px;margin:0;">OS Services</span></h1>
+<p>An operating system provides an environment for the execution of programs, as well as providing services to programs and users.</p>
+<ul>
+<li>UI including GUI</li>
+<li>CLI</li>
+<li>Program Execution</li>
+<li>I/O Operations</li>
+<li>File System Management</li>
+<li><p>Communications between processes</p>
+</li>
+<li><p>Error Detection: This refers to how the OS needs to be aware of errors that may occur with hardware, the CPU, memory or software. It should ensure minor errors do not halt the operation of the computer.</p>
+</li>
+<li><p>Resource Allocation and Usage Accounting</p>
+</li>
+<li><p>Protection and Security: Programs must be prevented from interfering with the OS. Additionally, authentication should prevent outside-users from accessing the system.</p>
+</li>
+</ul>
+<h1 id="-span-style-text-decoration-underline-3px-lightblue-text-underline-offset-10px-margin-0-system-programs-span-"><span style="text-decoration: underline 3px lightblue;text-underline-offset:10px;margin:0;">System Programs</span></h1>
+<ul>
+<li>File Management</li>
+<li>Status Information</li>
+<li>File Modification e.g. text editors</li>
+<li>Compilers, Assemblers, Debuggers, etc.</li>
+<li>Program Loading/Execution</li>
+<li>Communications</li>
+</ul>
+<h1 id="-span-style-text-decoration-underline-3px-lightblue-text-underline-offset-10px-margin-0-processes-span-"><span style="text-decoration: underline 3px lightblue;text-underline-offset:10px;margin:0;">Processes</span></h1>
+<p>A process is a running instance of an executing program. It will contain data such as:</p>
+<ul>
+<li>variables</li>
+<li>a register</li>
+<li>a stack</li>
+<li>the code to be compiled</li>
+</ul>
+<p>The PCB (Process Control Block) contains information such as process states, numbers, the program counter, registers, memory limits, etc.</p>
+<p>A process can do two types of tasks:</p>
+<ul>
+<li>CPU bound tasks when the program spends most of its time executing code.</li>
+<li>I/O task such as reading from a disk or making a network call. This process waits for the output before continuing</li>
+</ul>
+<p>The CPU is idle during an I/O task. To make full use of the CPU, I/O tasks can be performed at the same time as CPU bound tasks.</p>
+<p>Processes are also given CPU scheduling info in the PCB. This allows processes to be priority ranked.</p>
+<h2 id="process-states-and-lifecycles">Process States and Lifecycles</h2>
+<p>Processes can be <strong>running</strong> or <strong>idling</strong>.
+They can also be <strong>interrupted</strong> while running, and will move to the <strong>ready state</strong>.
+In the ready state, a process is not currently running.
+If the process has <strong>minimal resources</strong>, it will be sent to the ready state.
+Running processes enter the <strong>terminated state</strong> when they encounter unhandled errors or finish all operations.</p>
+<h2 id="scheduling">Scheduling</h2>
+<p>Time sharing is when the CPU switches processes so frequently that users can interact with each program.</p>
+<p>Scheduling can be done via queues and swapped between states as needed.</p>
+<h1 id="java-thread-states">Java Thread States</h1>
+<p>new state
+runnable state
+running state
+waiting state
+runnable state
+dead state</p>
+<h2 id="critical-section-problem">Critical Section Problem</h2>
+<p>Code segments that should not be run at the same time are called critical sections</p>
+<p>Threads can also have critical sections, this is mutual exclusion.</p>
+<p>Progress is when a segment is selected to enter its critical section and other segments have to wait</p>
+<p>bounded waiting means that no process should wait infinitely to enter its critical section</p>
+<h2 id="semaphores-in-the-producer-consumer-problem">Semaphores in the Producer-Consumer problem</h2>
+<p>A semaphore is an int stored across multiple processes</p>
+<p>Semaphore full shows the number of items in the buffer queue
+semaphore empty shows the number of spaces empty</p>
+<h2 id="race-conditions">Race conditions</h2>
+<p>When two operations compete to be executed first, this can be exploited by hackers</p>
+<p>Good coding practices can help to avoid them</p>
+<blockquote>
+<p>Explain the principles of network applications and the advantages and disadvantages of Peer-To-Peer and Client/Server architectures.
+The principles of network applications refer to how processes will communicate with each other over a network. Communications taking place on networks will either utilise peer-to-peer architecture or Client/Server architecture, depending on the nature of the application. In a peer-to-peer network, pairs of nodes are connected to each other in a decentralised fashion. Nodes will contain individual security configurations and applications. Client/Server networks, however, will contain a centralised, always-on server that will handle requests and manage the communication between processes on the network. Nodes will run on the same security configurations and applications will typically be centralised. Client/Server is advantageous over peer-to-peer due to increased security and easier access to other nodes since nodes will not have to send data through each other in order to reach their destination. Also, if one of the nodes were to go offline, the connection chain would not be broken in client/server architecture. Peer-to-peer does not have this advantage. However,</p>
+</blockquote>
+<h1 id="security">Security</h1>
+<p>Malware is malicious software designed to harm computer systems or networks. This includes viruses, worms, trojans, etc.</p>
+<p>Viruses are a specific type of malware that can replicate their own code asnd spread, causing data corruption and stealing information</p>
+<p>Worms are self-replicating</p>
+<p>Trojans are malware that disguise as legitimate software, tricking users</p>
+<p>logic bombs are malware triggered by a specific event such as a date/time</p>
+<p>trap door is a malware that acts as a backdoor for an attacker to enter a system</p>
+<p>a blended threat is when multiple types of malware are combined.</p>
+<p>D/Dos attacks -&gt; overwhelming a system with traffic</p>
+<p>Social Engineering</p>
+<p>Phishing
+SQL Injection
+Brute Forcing</p>
+<h1 id="cryptography">Cryptography</h1>
+<h2 id="symmetric-encryption">Symmetric Encryption</h2>
+<p>DES and AES are two symmetric encryption algorithms. DES is not very secure due to having a 56 bit key length. AES however has a 128 bit length which is exponentially harder to crack.</p>
+<h2 id="asymmetric-encryption">Asymmetric Encryption</h2>
+<p>RSA for example</p></div></body>
