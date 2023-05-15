@@ -2,9 +2,14 @@
 
 * { font-family:Segoe UI; Arial;}
 
+
 h3, h2, h1, strong { font-family:Segoe UI Semibold; }
 
 
+
+h2 {
+font-size:1.7em;
+}
 
 body {
     position: absolute;
@@ -40,6 +45,10 @@ div {
 }
 
 </style>
+
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
 <body><div>
 <h1 id="-span-style-text-decoration-underline-3px-green-text-underline-offset-10px-margin-0-comparing-algorithms-span-"><span style="text-decoration: underline 3px green;text-underline-offset:10px;margin:0;">Comparing Algorithms</span></h1>
 <h2 id="run-time">Run Time</h2>
@@ -183,4 +192,43 @@ is the same as saying</p>
 <p><strong><em>s</em> = x<sup>2</sup><sub>1</sub> + x<sup>2</sup><sub>2</sub> + x<sup>2</sup><sub>3</sub> + (...) +  x<sup>2</sup><sub>n</sub></strong> </p>
 <p>which in this case would be <strong>1<sup>2</sup> + 3<sup>2</sup> + 5<sup>2</sup> + 7<sup>2</sup> + 9<sup>2</sup></strong> = <strong>165</strong></p>
 </blockquote>
+
+<h2 id="factorials">Factorials</h2>
+<p>To find the <strong>factorial</strong> of a number we can multiple the number by all the integers before it up to 1.</p>
+<blockquote>
+<p>If <strong>n = 5</strong>
+then <strong>n! = 5! = 5 x 4 x 3 x 2 x 1 = 120</strong></p>
+</blockquote>
+<p>The factorial of a number is also the number of possible arrangements of those numbers. For example, a set of 5 items can be <strong>arranged</strong> 120 different ways.</p>
+<h2 id="permutations">Permutations</h2>
+<p>Permutations refer to the number of ways that <em>x</em> number of <strong>ordered elements</strong> can be arranged within a set.</p>
+<p>Permutations are defined as:
+$$ P_r^n = \frac{n!}{(n-r)!}  $$</p>
+<blockquote>
+<p>If we want to know how many times we can arrange <strong>2</strong> items within a set of <strong>4</strong> elements, where the combinations are ordered, e.g. (1,2) or (3,4) we can use the formula: $$ P^4_2 = 4! / (4-2)! = 24 / 2 = 12$$</p>
+</blockquote>
+<p>Permutations should be used when order is <strong>important</strong>, such as when finding the combination for a lock e.g. 123 is not the same as 321.</p>
+<h2 id="combinations">Combinations</h2>
+<p>Combinations refer to the number of ways that <em>x</em> number of <strong>unordered elements</strong> can be arranged within a set.</p>
+<p>Combinations are defined as:
+$$ C_r^n = (_r^n) = \frac{n!}{(r!)(n-r)!}$$</p>
+<blockquote>
+<p>If we want to know how many times we can arrange <strong>2</strong> items within a set of <strong>4</strong> elements, where the order doesn&#39;t matter, we can use the formula:$$ P^4_2 = 4! /(2!) (4-2)! = 24 / (2*2) = 24/4 = 6$$</p>
+</blockquote>
+<p>Combinations should be used when order is <strong>not important</strong> such as when arranging a fruit salad e.g. bananas and apples don&#39;t care what order they&#39;re in.</p>
+<h2 id="logarithms">Logarithms</h2>
+<p><strong>Logarithms</strong> can be thought of as the reverse of exponents (powers).</p>
+<blockquote>
+<p>10<sup>2</sup> = 100
+therefore <em>log</em><sub>10</sub>(100) = 2</p>
+</blockquote>
+<p>Logarithms can use different base units,
+e.g. <em>log</em><sub>3</sub>, <em>log</em><sub>5</sub>, <em>log</em><sub>x</sub></p>
+<p><em>log</em><sub>e</sub>(x) is known as the <strong>natural log*</strong>.
+It has a special notation, <strong>ln(x)</strong>.</p>
+<p>There are additional simplifications when natural logs are used.
+$$ ln(x^y) = y \cdot ln(x)$$</p>
+
+
+
 </div></body>
