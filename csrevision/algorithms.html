@@ -233,5 +233,43 @@ It has a special notation, <strong>ln(x)</strong>.</p>
 $$ ln(x^y) = y \cdot ln(x)$$</p>
 
 
+<h1 id="-span-style-text-decoration-underline-3px-green-text-underline-offset-10px-margin-0-sorting-algorithms-selection-sort-span-"><span style="text-decoration: underline 3px green;text-underline-offset:10px;margin:0;">Sorting Algorithms - Selection Sort</span></h1>
+<p><strong>Sorting</strong> takes an unordered collection and sorts it according to some defined logic such as alphabetically or in descending order.</p>
+<p><strong>Selection Sort</strong> works by repeatedly finding the smallest element in a list and moving it to the front, then adjusting the start point of the search to ensure it does not check the softed elements again.</p>
+<p>let x = [5,3,4,2,1]</p>
+<blockquote>
+<p><code>starting at first element, search through the list</code>
+<code>1 is the smallest so we move 1 to the front</code></p>
+</blockquote>
+<p>x now equals [1,5,3,4,2]</p>
+<blockquote>
+<p><code>We repeat this process again starting at the second element (so that we don&#39;t count 1 again)</code></p>
+<p><code>2 is the smallest element out of the selection [5,3,4,2]</code>
+`etc.</p>
+</blockquote>
+<p><code>After enough iterations:</code>
+x sorted is [1,2,3,4,5]</p>
+<h2 id="counting-primitive-operations">Counting Primitive Operations</h2>
+<p>The <strong>search</strong> for the smallest element requires us to search <strong>n</strong> elements the first time (n operations), then (n-1) elements the second time (n-1 operations), up until there are only 2 elements left to search (last iteration).</p>
+<p>The <strong>swap</strong> requires 2 operations to each time we search the set.</p>
+<p>This gives us an operation count of...
+$$(n + 2) + [(n-1) + 2] +[(n-2) +2] + . .. +(1+ 2) + 2$$
+...which simplifies to...
+$$\frac{n^2}{2} + \frac{5n}{2} + 2$$
+We can <strong>ignore</strong> the 5n/2 + 2 as it is insignificant in comparison to the n<sup>2</sup>.
+We can also <strong>ignore</strong> the 1/2 as it should take the <strong>simplest</strong> form of the expression.</p>
+<p>Therefore, this simplifies to n<sup>2</sup>, and the Big-O notation would be <strong>O(n<sup>2</sup>)</strong>.</p>
+<h1 id="-span-style-text-decoration-underline-3px-green-text-underline-offset-10px-margin-0-search-algorithms-span-"><span style="text-decoration: underline 3px green;text-underline-offset:10px;margin:0;">Search Algorithms</span></h1>
+<p><strong>Search Algorithms</strong> attempt to find elements that match a specific pattern within a set.</p>
+<p>There are two types of search algorithms:</p>
+<ul>
+<li><p>Sequential (Linear) Search, which checks every element sequentially for the expected result. The list does not need to be sorted in this case.</p>
+</li>
+<li><p>Interval (e.g. Binary) Search, which uses a &#39;divide and conquer&#39; strategy with multiple start points to find the result. The list <strong>must be sorted</strong> for this search method to work.</p>
+</li>
+</ul>
+
+
+
 
 </div></body>
