@@ -1,10 +1,12 @@
 <link type="text/css" rel="stylesheet" href="../../style.css" />
 <style>
 
-
+	#banner-mobile {
+	display:none;
+	}
 
 	body {
-		background: url('banner.jpg');
+		background-image: url('banner.jpg');
 		background-size: 100vw;
 		overflow-x: hidden;
 		background-repeat: no-repeat;
@@ -82,14 +84,33 @@
 	
 	@media screen and (max-width: 1024px) {
 	
-		.user-info {
-		margin-top: 60%;
+	#banner-mobile {
+	
+	display:block;
+	margin:1vh 0;
+	height:-webkit-fill-available;
+	border-radius:5vw;
+	}
+	
+	body {
+		background:white;
+	}
+	
+	img, blockquote {
+		border:white;
+		margin:3vh 0;
+	}
+	
+	.user-info-container {
+		margin:0;
+	}
+	.user-info {
+		margin:2vw;
 		max-width:100%;
 		width:100%;
 		background:#ffffff;
-		border:none;
-		box-shadow:none;
-		border-radius:0;
+
+		border-radius:5vw;
 		
 		
 	}
@@ -99,15 +120,16 @@
 	width:7.5vw;
 	height:7.5vw;
 	border-radius:50%;
+	margin: 1vh 0vh;
 	
 	}
 	
 	#author-wrapper div span {
-	font-size:3vw;
+	font-size:2.5vw;
 	}
 	
 	h2 {
-	margin-bottom:5vh 0;
+	margin-bottom:3vh 0;
 	font-size:3vw;
 	}
 	
@@ -120,12 +142,15 @@
 	.user-info p, .user-info em, .user-info blockquote p {
 	
 	font-size:2vw;
+	margin:1vh 0;
 	
 	}
 	
 	h2 {
 	    width: -webkit-fill-available;
 		}
+	
+
 	
 	
 	}
@@ -137,6 +162,8 @@
 	
 		<div class="user-info">
 
+			
+			<img id="banner-mobile" src="./banner.jpg">
 			<h2>Using Vanilla Minecraft to create a working 8-Queen Solver</h2>
 								<div id="author-wrapper">
 			<img style=""src="../../saen-kazak.png"><div style=""><span style="font-weight:bold;">Saen Kazak</span><span>25 JUN 2023</span></div></div>

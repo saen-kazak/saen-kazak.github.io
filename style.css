@@ -164,6 +164,8 @@ background-color:#005f00;
 background-image:none;
 }
 
+
+
   .profile-img {
   
   width: 50vw;
@@ -207,12 +209,21 @@ background-image:none;
 	  
   }
 
-.dropdown-content-item {
-	margin-top: 10vw;
+.dropdown-content-item-featured {
+    margin: 5vh 0;
+    max-width: -webkit-fill-available;
+    padding: 5vh 5vw;
 }
 
 .dropdown-content-item a {
-	flex-direction:column;
+    flex-direction: column;
+    justify-content: space-between;
+    
+}
+
+.dropdown-content-item-featured a {
+	min-height: 40vh;
+	height:-webkit-fill-available;
 }
 
 .dropdown-content-item a img {
