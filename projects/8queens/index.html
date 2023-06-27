@@ -1,31 +1,41 @@
-<link type="text/css" rel="stylesheet" href="../style.css" />
+<link type="text/css" rel="stylesheet" href="../../style.css" />
 <style>
+
+
+
 	body {
 		background: url('banner.jpg');
 		background-size: 100vw;
 		overflow-x: hidden;
 		background-repeat: no-repeat;
 		font-family: Segoe UI, Arial;
-		font-size: 1.2vw;
+		font-size: 1.5vw;
 		line-height: 1.5;
 	}
 
 	.user-info {
-		margin-top: 80vh;
+		margin-top: 30vh;
 		text-align: left;
 		align-items: flex-start;
+		
 	}
 
 	p {
 		text-align: left;
+		font-size: 1.5vw;
 	}
 	
 	blockquote {
 	
 	background: #eee;
 	padding:2vw;
-	margin-left:0;
 	border-radius:2vw;
+    display: flex;
+    flex-direction: column;
+    width: -webkit-fill-available;
+	margin:2vw 0;
+	
+	
 	}
 	
 	blockquote h3 {
@@ -45,11 +55,82 @@
 	img {
 	
 	width:50vw;
-	align
 	border:2px solid black;
 	border-radius:1vw;
 	
 	}
+	
+	#author-wrapper img {
+	
+	width:2.5vw;
+	height:2.5vw;
+	border-radius:50%;
+	
+	}
+	
+	#author-wrapper div {
+		display:flex;
+		flex-direction:column;
+		margin-left:1vw;
+	}
+	
+	#author-wrapper div span {
+		color:#333;
+		font-size:1vw;
+		
+	}
+	
+	@media screen and (max-width: 1024px) {
+	
+		.user-info {
+		margin-top: 60%;
+		max-width:100%;
+		width:100%;
+		background:#ffffff;
+		border:none;
+		box-shadow:none;
+		border-radius:0;
+		
+		
+	}
+	
+	#author-wrapper img {
+	
+	width:7.5vw;
+	height:7.5vw;
+	border-radius:50%;
+	
+	}
+	
+	#author-wrapper div span {
+	font-size:3vw;
+	}
+	
+	h2 {
+	margin-bottom:5vh 0;
+	font-size:3vw;
+	}
+	
+	img {
+	
+	width:99%;
+	
+	}
+	
+	.user-info p, .user-info em, .user-info blockquote p {
+	
+	font-size:2vw;
+	
+	}
+	
+	h2 {
+	    width: -webkit-fill-available;
+		}
+	
+	
+	}
+	
+
 </style>
 <body>
 	<div class="user-info-container">
@@ -58,7 +139,7 @@
 
 			<h2>Using Vanilla Minecraft to create a working 8-Queen Solver</h2>
 								<div id="author-wrapper">
-			<img style="width:2.5vw;height:2.5vw;border-radius:50%;"src="../saen-kazak.png"><div style="display:flex;flex-direction:column;margin-left:1vw;"><span style="font-weight:bold;color:#333;font-size:1vw;">Saen Kazak</span><span style="color:#333;font-size:1vw;">25 JUN 2023</span></div></div>
+			<img style=""src="../../saen-kazak.png"><div style=""><span style="font-weight:bold;">Saen Kazak</span><span>25 JUN 2023</span></div></div>
 			<p>
 				<em>This project is still a work in progress. I will update back here when it&#39;s complete!</em>
 			</p>
@@ -67,8 +148,8 @@
 			
 			<blockquote>
 			<h3>What is the 8-Queens Problem?</h3>
-							<img style="width:40vw;border:1px solid black;"src="Pasted%20image%2020230621061448%201.png" alt=""><br/>
-				<em>A correct 8-Queens solution board</em><br/><br/>
+							<img style="width: -webkit-fill-available;border:1px solid black;"src="Pasted%20image%2020230621061448%201.png" alt=""><br/>
+				<em>A correct 8-Queens solution board</em><br/>
 			<p>The 8-Queens Problem is a well known mathematical problem involving the use of an 8x8 chessboard with eight queens placed on the grid at random positions.</p><p>The aim of the problem is to try and use an optimised search technique to continuously tweak the positions of the queens until a board layout is found where none of the queens are on the same horizontal, vertical or diagonal as each other. Although this sounds easy in theory, there are roughly four billion possible combinations of eight queens on a grid.</p><p>Only 92 of these combinations are actual solutions to the problem.</p>
 			<p>Optimised search techniques can range from the highly advanced, probabilistic search functions that take a wide range of input parameters, to the incredibly slow and lazy search methods such as random reshuffling.</p>
 			</blockquote>
@@ -91,11 +172,11 @@
 			<p>
 				<img src="Pasted%20image%2020230626200703.png" alt="">
 			</p>
-			<h3 id="managing-entities-through-uuids">Managing entities through UUIDs</h3>
+			<h2 id="managing-entities-through-uuids">Managing entities through UUIDs</h2>
 			<p>Every entity created inside a world will have a <strong>unique user identifier</strong>, or <strong>UUID</strong>. The UUID of an entity is a hex string that can be used in substitution of a player name or tag. UUIDs can be found by autocompleting any command that makes use of a player name while standing near the entity we want to manage. </p>
 			<p>This is an incredibly useful feature since it allows any command that would typically take a player name as input to take a UUID value instead, unlocking the use of these commands for entities in addition to players.<br/><br/><img src="Pasted%20image%2020230626202054.png" alt="">
 			</p>
-			<h3 id="determining-board-positions">Determining Board Positions</h3>
+			<h2 id="determining-board-positions">Determining Board Positions</h2>
 			<p>There are numerous ways to attempt to represent an 8-queen board layout within a programming language. The simplest way would be to represent it as a 2D boolean array, where <code>true</code> represents a queen and <code>false</code> represents a blank. Or characters can be used instead. </p>
 										<blockquote style="border-radius:0.5vw;padding:1vw;background:#222;color:#fff;width: -webkit-fill-available;"><code>
 
