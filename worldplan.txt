@@ -1,0 +1,41 @@
+AI Minecraft involving Geometry Dash
+
+Minecraft Randomised Soyjak Printer
+
+Minecraft space invaders
+
+Minecraft minigane where you have to knock out charlies teeth. Uses target blocks as the teeth and command blocks to make the targets disappear after they are hit. Gets progressively more difficult - the Charlie head moves further away and starts animating itself
+
+Minecraft minigame where you have to jump into a pool of water. When you jump, you fill the block you land on with concrete.
+Your goal is to create various simple pixel arts getting harder with each level and do these in the least number of jumps. There will also be an option to toggle an eraser so you can jump and turn the block back into water.
+
+Minecraft minigame involving the helicopter - very simple, you have to fly through increasingly more difficult hoops within the world. If you fail a hoop the helicopter will crash. A dumbed down clone of the world (only featuring a few buildings e.g 360skittles, in a limited size ocean world) can be used as a map.
+
+Redo 80s Video Game Street cos it's a mess:
+So we've got a ton of minigames planned. Some of them are arcade based such as pac man and ice break, space invaders. Some are not such as the Charlie teeth one.
+We can still have the awesome arcade building but then also have separate buildings that simply /tp to the same place with prominent signing that the 'Arcade' on Broadway basically mirrors 80s Street. The only difference is that 80s Street contains a lot more pixel art and decorations for thr games.
+Im thinking 80s Street can be a junction the other direction off of redstone valley since it kinda links the two together quite nicely and there's nothing that direction at the moment.
+Broadway should be extended to include the non-arcade minigames, since it already includes a variety of structures from the bar, to rainbow road, to the server data centre.
+Consider one minigame per station! Perhaps
+
+Another minigame could literally be your pigmen slayer, where you collect currency for the amount of pigmen you slay in a certain time and use that to buy enchanted weapons. AND this could take place in a nether themed area or separate world (probs separate cos entities n that)
+
+Also it really is time to make moonfleet less of a shithole. When rebuilding Blockfleet International please make sure you give prominence to the rocket platform so it's not just a tiny stupid thing. Create dumb nonsense on moonfleet like a 3D wazowski that farts particles when you press a lever. Also don't forget the blue pigmen. Tell a story about how they were exiled.
+
+Alverton Gardens can feature a corky clicker game (get it? Like cookie clicker). You hit a lever for 10 seconds as fast as you can to get as many carrots as you can. You can trade carrots for a trait which allows you to get more carrots per click (This can be configured with scoreboard)
+
+Duke Street - Main Station, no minigame
+Broadway - already has all the rainbow road stuff - please rebuild this properly it's not hard!!
+
+NS Cross - perfect place for the helicopter game. Avoid unintentional 9/11 references though please LOL There are a lot of tall buildings in this area
+
+Clementines Town - Charlie Teeth game. Best place to put this since there is nothing else of interest in the area
+Clementines - fuck I don't really know. Maybe a game where you get given a plot of land and just have to build a house. OR perhaps a game where one of the fancy houses is destroyed and you have to use the mirror image to clone it as closely as possible.
+
+Alverton - We can skip this since it has the mythical wizard tree. Keep building Charmonia!! Bug riley to help you lol
+
+Alverton Gardens - The Corky Clicker
+
+Blockfleet International - can be skipped as it contains the portal to Moonfleet. There should be no other portal to Moonfleet in the world!!
+
+Important point : all of the minigames can have decorative buildings located in one place, that is allowed. These should TP the player to the world or location. Preferably the location should be near the city centre
