@@ -1,0 +1,186 @@
+<style>
+
+* { font-family:Segoe UI; Arial;}
+
+h3, h2, h1, strong { font-family:Segoe UI Semibold; }
+
+
+
+body {
+    position: absolute;
+    left: 23%;
+    right: 23%;
+    top: 8%;
+}
+
+div {
+    background: white;
+    padding-left: 10%;
+    border-radius: 4vw;
+    padding-right: 10%;
+    padding-top: 5%;
+}
+
+@media only screen and (max-width: 1024px) {
+  body {
+    position: absolute;
+    left: 0;
+    right: 0;
+	top:0;
+	padding:0;
+	margin:0;
+  }
+  
+  div {
+  border-radius: 0px;
+	}
+	
+	
+  
+}
+
+</style>
+<body><div>
+<h2 id="-span-style-text-decoration-underline-3px-green-text-underline-offset-10px-margin-0-comparing-algorithms-span-"><span style="text-decoration: underline 3px green;text-underline-offset:10px;margin:0;">Comparing Algorithms</span></h2>
+<h3 id="run-time">Run Time</h3>
+<p>The running time of an algorithm:</p>
+<ul>
+<li><strong>varies</strong> based on the <strong>input</strong>.</li>
+<li>often increases as the <strong>input size</strong> increases.</li>
+<li>may be <strong>faster</strong> on certain data sets than others.</li>
+</ul>
+<p><strong>Case Times</strong>
+Algorithms will have a <strong>best</strong> case time, <strong>worst</strong> case time and <strong>average</strong> case time.</p>
+<ul>
+<li>The <strong>best case</strong> does not really tell us much as it usually doesn&#39;t happen very often.</li>
+<li>The <strong>average case</strong> can be difficult to determine as it often requires a lot of testing.</li>
+<li>The <strong>worst case</strong> is most useful and is <strong>easier to analyse</strong>.</li>
+</ul>
+<h3 id="experimental-studies">Experimental Studies</h3>
+<p>Programs can be written that <strong>implement</strong> the algorithm and the resulting run times can be <strong>plotted</strong>.</p>
+<p>However, this brings about some <strong>limitations</strong>:</p>
+<ul>
+<li>Implementing the algorithm can be <strong>difficult</strong>.</li>
+<li>Results may <strong>not</strong> be indicative of certain inputs.</li>
+<li>The same <strong>hardware</strong> and <strong>software</strong> must be used.</li>
+</ul>
+<h3 id="asymptotic-analysis">Asymptotic Analysis</h3>
+<ul>
+<li>Using a <strong>high level description</strong> of the algorithm instead of an <strong>implementation</strong>.</li>
+<li>Calculating how the <strong>running time</strong> varies with <strong>input size</strong>.</li>
+</ul>
+<p>To estimate the running time, we can:</p>
+<ul>
+<li>Use <strong>pseudocode</strong> to construct the algorithm.</li>
+<li>Count the number of <strong>steps</strong> in terms of primitive operations.</li>
+</ul>
+<p>We refer to the running time of an algorithm as <strong>T(n)</strong> where <strong>n = input size</strong> or <strong>T(n,m,...)</strong> if there is more than one input.</p>
+<p><strong>T(n)</strong> can be used to calculate the Big-O of an algorithm, <strong>O(n)</strong>.</p>
+<h2 id="-span-style-text-decoration-underline-3px-green-text-underline-offset-10px-margin-0-pseudo-code-span-"><span style="text-decoration: underline 3px green;text-underline-offset:10px;margin:0;">Pseudo Code</span></h2>
+<ul>
+<li>Used to represent algorithms in a way that is <strong>independent</strong> of programming languages</li>
+<li>The normal concepts of loops (for/while), conditionals (if/else) and variables are used.</li>
+<li><strong>Mathematical notations</strong> such as sets and equations are also often used.</li>
+<li>Functions are <strong>not</strong> used, <strong>unless</strong> we define them first</li>
+</ul>
+<h3 id="pseudo-code-example">Pseudo Code Example</h3>
+<p><code>ArrayMax Algorithm Pseudocode
+input: A 1-D numerical array Arr of size n &gt; 0
+let CurrentMax = a0
+for i = 1 to n-1
+    if ai &gt; CurrentMax Then CurrentMax = ai
+End For
+Output: CurrentMax, the largest value in Arr</code></p>
+<h3 id="counting-primitive-operations">Counting Primitive Operations</h3>
+<p>The individual operations of an algorithm can be counted by <strong>inspecting</strong> the pseudo code.
+For example, the line <code>let CurrentMax = a0</code> will contain <strong>two</strong> operations as we are <strong>referencing</strong> <code>CurrentMax</code> <strong>(1)</strong>, and <strong>assigning</strong> it to <code>a0</code> <strong>(2)</strong>.</p>
+<p>It is important to count <strong>loops</strong> correctly as operations inside a loop will repeat.
+For example if the for loop has an operation count of <strong>n-1</strong> and repeats <strong>7 times</strong>, the inside code will have an operation count of <strong>7(n-1)</strong>.</p>
+<p><strong>Indentation</strong> helps to ensure nested loops can be easily seen, so that the inside operations can be counted properly.</p>
+<h2 id="-span-style-text-decoration-underline-3px-green-text-underline-offset-10px-margin-0-mathematical-foundations-span-"><span style="text-decoration: underline 3px green;text-underline-offset:10px;margin:0;">Mathematical Foundations</span></h2>
+<p><strong>Variables</strong> are symbols used to represent a mathematical construct, such as <strong>sets</strong> or <strong>matrices</strong>. They are treated the same mathematically as they are in programming.</p>
+<h3 id="sets">Sets</h3>
+<p>A <strong>set</strong> is a collection of objects, known as <strong>elements</strong>.
+Sets are unordered.
+Sets can be finite or infinite.</p>
+<p>Some well known sets include</p>
+<ul>
+<li><strong>ℝ</strong> - The set of Real Numbers </li>
+<li><strong>ℤ</strong> - The set of Integers</li>
+</ul>
+<p>We can specify whether an <strong>element</strong> is a member of a set using the <strong>∈</strong> and <strong>∉</strong> symbols.</p>
+<blockquote>
+<p>If we say a ∈ <strong>B</strong>, this means a is an element of the set B
+If we say x ∉ <strong>Y</strong>, this means that x is not an element of the set Y.</p>
+</blockquote>
+<p>We can reference the <strong>cardinality</strong> of a set by wrapping its name in | | <strong>characters</strong>.</p>
+<blockquote>
+<p>If set <strong>A</strong> = <strong>{ 1 , 2 , 3 , 4 , 7 , 9}</strong>
+then <strong>|A|</strong> = <strong>6</strong>
+because there are six elements in set A.</p>
+</blockquote>
+<p>Multiple sets can be referenced at a time via the use of <strong>intersections</strong> and <strong>unions</strong>.
+<strong>Intersection</strong> (<strong>∩</strong>) shows elements that are in <strong>both sets</strong>.</p>
+<blockquote>
+<p>If Set <strong>A = { 1 , 2 , 4 , 6 , 7 }</strong>
+If Set <strong>B = { 2 , 3 , 5 , 8 , 9 }</strong></p>
+<p>then <strong>A ∩ B = {2}</strong> <code>can be thought of as in A and B</code>
+and <strong>A ∪ B = {1,2,3,4,5,7,8,9}</strong> <code>can be thought of as in A or B</code></p>
+</blockquote>
+<p><strong>Subsets</strong> and <strong>Supersets</strong> can be defined as well.</p>
+<blockquote>
+<p>If A is a set and B is a set,
+and every element of B is also in A,
+then we can say <strong>B</strong> ⊆ <strong>A</strong>,
+meaning B is a <strong>subset</strong> of A</p>
+<p>By applying the reverse logic, this also means that A is a <strong>superset</strong> of B.</p>
+</blockquote>
+<h3 id="equations">Equations</h3>
+<p>Equations use mathematical operations to link variables and numbers to each other.
+Equations often have to be simplified.</p>
+<blockquote>
+<p>(<em>n</em>-1)(<em>n</em>-2)(<em>n</em>-3) can be simplified to
+= (<em>n</em><sup>2</sup> - 2<em>n</em> - <em>n</em> + 2)(<em>n</em> - 3) <code>expand first bracket</code>
+= (<em>n</em><sup>2</sup> - 3<em>n</em> + 2)( <em>n</em> - 3) <code>add up the &#39;n&#39; terms</code>
+= n<sup>3</sup> - 3n<sup>2</sup> - 3n<sup>2</sup> + 9n + 2n - 6 <code>expand again</code>
+= n<sup>3</sup> - 6n<sup>2</sup> + 11n - 6 <code>add up the terms again</code></p>
+</blockquote>
+<h3 id="functions">Functions</h3>
+<p>Functions are relations that uniquely associate members of one set with members of another set.</p>
+<p><strong>The exponential function</strong>
+<em>e</em> is an irrational (infinite decimal places) mathematical constant which is around <strong>2.718</strong>.
+<em>e</em><sup><em>x</em></sup> is a special function often used to represent continuous growth.</p>
+<blockquote>
+<p><em>e</em><sup><em>x</em></sup> can also be notated as <em>exp(x)</em>.</p>
+</blockquote>
+<h3 id="subscripts">Subscripts</h3>
+<p><strong>Subscripts</strong> can be used to <strong>index</strong> lists.</p>
+<blockquote>
+<p>If <strong>X = [ 4 , 7 , 8 , 5 , 8 , 3 ]</strong></p>
+<p>we can signify that
+X<sub>1</sub> = 4
+X<sub>4</sub> = 5, etc.
+X<sub>i</sub> = [<em>whatever number we&#39;re at in a loop</em>]</p>
+</blockquote>
+<h3 id="summation">Summation</h3>
+<p>We can use specific notation to reference the <strong>sum</strong> of all elements in a set.</p>
+<blockquote>
+<p>If X = <strong>[1 , 3 , 5 , 7 , 9]</strong>
+then
+![[Pasted image 20230515182651.png]] 
+is the same as saying</p>
+<p><strong><em>s</em> = x<sub>1</sub> + x<sub>2</sub> + x<sub>3</sub> + (...) +  x<sub>n</sub></strong> </p>
+<p>which in this case would be <strong>1+3+5+7+9 = 25</strong></p>
+<p>   To sum the squares, we would replace <strong>X<sub>i</sub></strong> above with <strong>X<sup>2</sup><sub>i</sub></strong></p>
+</blockquote>
+<h3 id="products">Products</h3>
+<p>Similar notation can be used to reference the <strong>product</strong> of all elements in a set.</p>
+<blockquote>
+<p>If X = <strong>[1 , 3 , 5 , 7 , 9]</strong>
+then
+![[Pasted image 20230515183923.png]]
+is the same as saying</p>
+<p><strong><em>s</em> = x<sup>2</sup><sub>1</sub> + x<sup>2</sup><sub>2</sub> + x<sup>2</sup><sub>3</sub> + (...) +  x<sup>2</sup><sub>n</sub></strong> </p>
+<p>which in this case would be <strong>1<sup>2</sup> + 3<sup>2</sup> + 5<sup>2</sup> + 7<sup>2</sup> + 9<sup>2</sup></strong> = <strong>165</strong></p>
+</blockquote>
+</div></body>
