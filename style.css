@@ -6,6 +6,7 @@ body {
     font-family: Segoe UI, Arial;
     font-size: 1.2vw;
     line-height: 1.5;
+	background-color:#012
 }
 
 .profile-img {
@@ -13,7 +14,7 @@ body {
   height: 15vw;
   border-radius: 50%;
   object-fit: cover;
-  border: 0.5vw solid #fff;
+  border: 0.5vw solid #ddf;
   box-shadow: 0px 0.9vw 3vw rgba(0, 0, 0, 0.3);
 }
 
@@ -47,10 +48,12 @@ body {
   box-shadow: 0px 0.9vw 3vw rgba(0, 0, 0, 0.3);
   padding: 2vw;
   width: 80%;
-  max-width: 50vw;
+  max-width: 63vw;
   justify-content: center;
   text-align:center;
-margin-bottom: 8vw;
+  margin-bottom: 8vw;
+  background: #1f1f30;
+  color:#e0ffff;
 }
 
 .user-info h1 {
@@ -59,7 +62,7 @@ margin-bottom: 8vw;
 }
 
 .user-info p {
-  font-size: 1.2vw;
+  font-size: 1.1vw;
   margin: 0.5vw 0;
 }
 
@@ -80,17 +83,19 @@ margin-bottom: 8vw;
 }
 
 .dropdown-content {
-    width: 80%;
+    /* width: 97%; */
     max-width: 50vw;
     display: flex;
     padding: 1vw;
     margin: 1vw;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
     align-content: center;
     justify-content: space-between;
-	
-
+    align-items: center;
+    background: #1f1f40;
+    padding: 5vw 8vw;
+    border-radius: 2em;
 }
 
 .dropdown-content-item {
@@ -115,7 +120,7 @@ display: flex;
     flex-direction: row;
     text-decoration: none;
     align-items: center;
-	color:#111111;
+	color:#eeeeee;
 
 }
 
@@ -138,18 +143,24 @@ display: flex;
 }
 
 .dropdown-content-item-featured {
-	background: #ffffcc;
-	padding:3vw;
+	background: darkkhaki;
+	padding:3vw 2vw;
 	border-radius:2vw;
+	margin: 0;
+	
+}
+
+
+
+.dropdown-content-item-featured a h3, .dropdown-content-item-featured a p{
+	margin:0;
+	color:#111111;
 }
 
 .dropdown-featured-text {
-	color:red;
+	color:darkred;
 	font-weight:bold;
-}
-
-.dropdown-content-item-featured a h3 {
-	margin:0;
+	font-size:1.5em;
 }
 
 @media screen and (max-width: 768px) {
@@ -160,7 +171,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-background-color:#005f00;
+background-color:darkslategrey;
 background-image:none;
 }
 
@@ -196,13 +207,11 @@ background-image:none;
   }
   
   .user-info p {
-    font-size: 4vw;
+    font-size: 3.5vw;
     margin: 1vw 0;
   }
   
-  .dropdown {
-	  background-color: #fff;
-  }
+
   
   .dropdown-content {
 	  max-width:100vw;
