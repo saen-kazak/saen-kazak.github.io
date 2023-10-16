@@ -100,9 +100,7 @@ body {
 
 .dropdown-content-item {
 display:flex;
-max-width:50vw;
-min-width:50vw;
-margin-top:3vw;
+margin-top:7vw;
 
 
 }
@@ -171,8 +169,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-background-color:darkslategrey;
-background-image:none;
+	background-color:darkslategrey;
+	background-image:none;
 }
 
 
