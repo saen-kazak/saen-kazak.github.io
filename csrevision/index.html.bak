@@ -1,0 +1,103 @@
+<html>
+<style>
+
+body {
+background-color: #ddd;
+margin:2vw;
+}
+
+p, a {
+
+font-family: Segoe UI Semibold;
+font-size: 1.3vw;
+}
+
+h1 {
+font-family: Segoe UI;
+font-weight:bold;
+font-size: 1.9vw;
+}
+
+h2 {
+font-family: Segoe UI;
+font-weight:bold;
+font-size: 1.2vw;
+}
+
+h3 {
+font-family: Segoe UI;
+font-weight:bold;
+font-size: 1vw;
+}
+
+a {
+text-decoration:none;
+}
+
+#notyet li a {
+color:black;
+}
+
+#content {
+display:flex;
+flex-direction:column;
+}
+
+#topics {
+display:flex;
+flex-direction:column;
+}
+
+#hahafunnyanimals {
+display:flex;
+flex-direction:row;
+}
+
+</style>
+<h1><center>Saen's CS Revision Notes</center></h1>
+<div id="content">
+<div id="hahafunnyanimals">
+<div id="moose">
+
+<h1>Random picture of a moose</h1><p>Here is a moose</p>
+<img width=300 height=300 src="https://live.staticflickr.com/1738/42550175451_1aa09d0549_c.jpg"></div>
+<div id="salamander">
+<h1>also giant salamander</h1><p>Here is giant salamander</p>
+<img width=300 height=300 src="https://www.japan-experience.com/sites/default/files/images/content_images/salamander2018.jpg"></div></div>
+
+<div id="topics">
+
+<p style="font-family:Consolas;font-weight:bold;font-size:1.3vw;">01/05/2024 19:02 Neural networks notes complete! Expert Systems in progress...</p><br/><br/>
+
+<h2>CS3002 Artificial Intelligence</h2>
+<ul>
+<li><a href="./artificial-intelligence-cs3002/lectures/3002.1-unsupervised-learning.html">Topic 1 - Unsupervised Learning (Clustering) </a></li>
+
+<li><a href="./artificial-intelligence-cs3002/lectures/3002.2-supervised-learning.html">Topic 2 - Supervised Learning (Classification)</a></li>
+
+<li><a href="./artificial-intelligence-cs3002/lectures/3002.3-neural-networks.html">Topic 3 - Neural Networks</a></li>
+
+
+<li><a href="./artificial-intelligence-cs3002/lectures/3002.4-expert-systems.html">Topic 4 - Expert Systems</a></li>
+
+<li><p>Coming Soon...</p></li>
+<div id="notyet">
+
+<li><a href="#">Topic 5 - Deep Learning I</a></li>
+<li><a href="#">Topic 6 - Deep Learning II</a></li>
+<li><a href="#">Topic 7 - Causal and Bayesian Systems</a></li>
+<li><a href="#">Topic 8 - Sequences and Time</a></li>
+<li><a href="#">Topic 9 - AI and Society</a></li>
+
+
+</ul>
+
+
+
+<h2>CS3001 Advanced Topics</h2>
+<ul>
+<li><a href="./advanced/Blockchain.html">Blockchain</a></li>
+<li><a href="./advanced/LLM-Notes.html">Large Language Models</a></li>
+</ul><br/><br/>
+
+</div>
