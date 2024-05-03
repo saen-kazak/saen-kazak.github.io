@@ -51,6 +51,7 @@ flex-direction:column;
 #hahafunnyanimals {
 display:flex;
 flex-direction:row;
+justify-content: space-around;
 }
 
 </style>
@@ -67,10 +68,12 @@ flex-direction:row;
 
 <div id="topics">
 
-<p style="font-family:Consolas;font-weight:bold;font-size:1.3vw;">01/05/2024 19:02 Neural networks notes complete! Expert Systems in progress...</p><br/><br/>
+<p style="font-family:Consolas;font-weight:bold;font-size:1.3vw;">01/05/2024 22:39 expert system notes functionally complete, starting the next whatever it is soon</p><br/><br/>
 
 <h2>CS3002 Artificial Intelligence</h2>
+
 <ul>
+<li><a href="https://chat.openai.com/g/g-OtGvAW0tr-ai-exam-question-generator">Custom GPT created for AI exam questions</a></li>
 <li><a href="./artificial-intelligence-cs3002/lectures/3002.1-unsupervised-learning.html">Topic 1 - Unsupervised Learning (Clustering) </a></li>
 
 <li><a href="./artificial-intelligence-cs3002/lectures/3002.2-supervised-learning.html">Topic 2 - Supervised Learning (Classification)</a></li>
@@ -80,11 +83,11 @@ flex-direction:row;
 
 <li><a href="./artificial-intelligence-cs3002/lectures/3002.4-expert-systems.html">Topic 4 - Expert Systems</a></li>
 
+<li><a href="./artificial-intelligence-cs3002/lectures/3002.5-deep-learning.html">Topic 5 + 6 - Deep Learning I and II : Computer Vision and NLP</a></li>
+
 <li><p>Coming Soon...</p></li>
 <div id="notyet">
 
-<li><a href="#">Topic 5 - Deep Learning I</a></li>
-<li><a href="#">Topic 6 - Deep Learning II</a></li>
 <li><a href="#">Topic 7 - Causal and Bayesian Systems</a></li>
 <li><a href="#">Topic 8 - Sequences and Time</a></li>
 <li><a href="#">Topic 9 - AI and Society</a></li>
