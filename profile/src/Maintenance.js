@@ -10,7 +10,7 @@ function Maintenance() {
                 </div>
                 <div className="hero-container">
                     <h1>This site is currently under maintenance...</h1>
-                    <h2>Looking for CS Revision Notes? Click <a style={{textDecoration:"none",color:"white"}} href="http://saen.minecraftengineering.org/csrevision">Here</a></h2>
+                    <h2>Looking for CS Revision Notes? Click <a style={{textDecoration:"none",color:"white"}} href="./csrevision">Here</a></h2>
 
                 </div>
             </header>
