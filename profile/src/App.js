@@ -61,8 +61,9 @@ I have been a Minecraft modder and scripter for over 11 years, stress-testing an
             </section>
 
             <footer>
+			
                 <div className="footer-container">
-                    <p>&copy; 2024 Saenooos. All rights reserved.</p>
+                    <p><a className="csrevision" href="./csrevision">Looking for CS Revision Notes? Click Here</a></p>
                 </div>
             </footer>
         </div>

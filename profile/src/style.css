@@ -3,6 +3,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Anaheim&family=Train+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Anaheim&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&family=Train+One&display=swap');
 
+.csrevision {
+	color:white;
+	font-size:1.3rem;
+	text-decoration:none;
+	font-family:Segoe UI;
+}
 
 body {
     margin: 0;
@@ -160,6 +166,9 @@ footer {
     background-color: #1f1f3d;
     padding: 1rem 2rem;
     text-align: center;
+	position:fixed;
+	bottom:0;
+	width:100%;
 }
 
 .footer-container p {
