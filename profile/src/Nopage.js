@@ -9,7 +9,8 @@ function Nopage() {
                     <img src={profilePic} className="profile-img"/>
                 </div>
                 <div className="hero-container">
-                    <h1>This site is currently under maintenance...</h1>
+                    <h1>There's no page here.</h1>
+					<br/>
                     <h2>Looking for CS Revision Notes? Click <a style={{textDecoration:"none",color:"white"}} href="./csrevision">Here</a></h2>
 
                 </div>

@@ -1,18 +1,29 @@
 import React from 'react';
+import { HashRouter, Routes, Route } from "react-router-dom";
 import ReactDOM from 'react-dom/client';
 import './index.css';
+import Profile from './Profile';
 import Maintenance from './Maintenance';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import Nopage from './Nopage';
+import Projects from './Projects';
+import AiToolList from './AiToolList';
+import { Fragment } from 'react';
+
+export default function App() {
+  return (
+    <HashRouter>
+      <Routes>
+        <Route path="/">
+          <Route index element={<><Profile /><Projects /></>} />
+		  <Route path="maintenance" element={<Maintenance />} />
+		  <Route path="ai" element={<AiToolList />} />
+		  
+		  <Route path="*" element={<Nopage />} />
+        </Route>
+      </Routes>
+    </HashRouter>
+  );
+}
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+root.render(<App />);

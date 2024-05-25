@@ -172,7 +172,6 @@ footer {
 }
 
 .footer-container p {
-    margin: 0;
     font-size: 0.875rem;
     color: #b3b3b3;
 }
@@ -286,6 +285,12 @@ footer {
 		font-size:1.3rem;
 		margin:1.5rem;
 	}
+	
+	footer {
+		background:black;
+		width:100%;
+		left:-5vw;
+		}
 	
 	.project {
 		width:80%;
