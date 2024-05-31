@@ -17,7 +17,7 @@ const tools = [
         link: 'http://roboflow.com',
         imgSrc: 'https://assets-global.website-files.com/5f6bc60e665f54545a1e52a5/6374c97de94f946ff2b9e7ad_xIWWM_a-_400x400.jpg',
         backgroundColor: '400382',
-        color: 'auto'
+        color: 'white'
     },
     {
         name: 'ElevenLabs',
@@ -41,7 +41,23 @@ const tools = [
         link: 'https://www.leonardo.ai',
         imgSrc: 'https://assetstorev1-prd-cdn.unity3d.com/key-image/c1fccefd-39eb-4bfc-b99b-06bcf8c30e62.jpg',
         backgroundColor: '440f19',
-        color: 'auto'
+        color: 'white'
+    },
+    {
+        name: 'ImmersityAI (LeiaPix)',
+        description: 'Converts static images to motion video.',
+        link: 'https://immersity.ai',
+        imgSrc: 'https://aitoolmall.com/wp-content/uploads/2023/03/626163550ec80a85dbbf9bd4_icon-leiapix_%E5%89%AF%E6%9C%AC.png',
+        backgroundColor: '222222',
+        color: 'white'
+    },
+    {
+        name: 'InVideo AI',
+        description: 'AI Video generator that uses language model prompts to create animated videos using stock footage.',
+        link: 'https://invideo.ai',
+        imgSrc: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8_21r-bF02Y1nN0F3gCyNQy2NXaqIMMBXdw&s',
+        backgroundColor: 'e3307c',
+        color: 'ffffff'
     }
 ];
 

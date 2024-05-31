@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter, Routes, Route } from "react-router-dom";
+import { MemoryRouter, Routes, Route } from "react-router-dom";
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import Profile from './Profile';
@@ -11,7 +11,7 @@ import { Fragment } from 'react';
 
 export default function App() {
   return (
-    <HashRouter>
+    <MemoryRouter>
       <Routes>
         <Route path="/">
           <Route index element={<><Profile /><Projects /></>} />
@@ -21,7 +21,7 @@ export default function App() {
 		  <Route path="*" element={<Nopage />} />
         </Route>
       </Routes>
-    </HashRouter>
+    </MemoryRouter>
   );
 }
 

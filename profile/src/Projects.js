@@ -7,8 +7,10 @@ function Home() {
 	
         <div>
 			<meta name="viewport" content="width=device-width, initial-scale=1" />
-            <section id="projects" className="content-section">
+            <section id="projects" className="content-section"><br/>
+			<a href="#/ai"><h2> &gt;&gt; AI Tool Quick Search &lt;&lt;</h2></a>
                 <h2 id="projectsHeader">Projects</h2>
+				
                 <div className="projects-container">
                     <div className="project" id="projectFeatured">
                         <img src="./projects/railsafe/banner.gif" alt="Deep-Learning-Railways" />
