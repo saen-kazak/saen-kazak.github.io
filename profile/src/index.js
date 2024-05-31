@@ -11,7 +11,7 @@ import { Fragment } from 'react';
 
 export default function App() {
   return (
-    <MemoryRouter>
+    <HashRouter>
       <Routes>
         <Route path="/">
           <Route index element={<><Profile /><Projects /></>} />
@@ -21,7 +21,7 @@ export default function App() {
 		  <Route path="*" element={<Nopage />} />
         </Route>
       </Routes>
-    </MemoryRouter>
+    </HashRouter>
   );
 }
 
