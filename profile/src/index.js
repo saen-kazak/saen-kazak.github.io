@@ -7,6 +7,7 @@ import Maintenance from './Maintenance';
 import Nopage from './Nopage';
 import Projects from './Projects';
 import AiToolList from './AiToolList';
+import Blockmaster from './Blockmaster';
 import { Fragment } from 'react';
 
 export default function App() {
@@ -17,6 +18,7 @@ export default function App() {
           <Route index element={<><Profile /><Projects /></>} />
 		  <Route path="maintenance" element={<Maintenance />} />
 		  <Route path="ai" element={<AiToolList />} />
+		  <Route path="blockmaster" element={<Blockmaster />} />
 		  
 		  <Route path="*" element={<Nopage />} />
         </Route>

@@ -43,12 +43,7 @@ function Home() {
                 </div>
             </section>
 
-            <footer>
-			
-                <div className="footer-container">
-                    <p><a className="csrevision" href="./csrevision">Looking for CS Revision Notes? Click Here</a></p>
-                </div>
-            </footer>
+
         </div>
     );
 }
