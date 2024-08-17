@@ -7,8 +7,8 @@ function Blockmaster() {
 	
         <div>
 		
-			<meta name="viewport" content="width=device-width, initial-scale=1" />
-            <header id="blockmaster-hero">
+			<meta name="viewport" content="width=device-width, minimum-scale=1,initial-scale=1" />
+            <div id="blockmaster-hero">
                 <div className="blockmaster-hero-container">
 					<div className="blockmaster-profile-wrapper">
 					<img src={blockMaster1} className="blockmaster1-img-mobile"/>
@@ -19,15 +19,25 @@ function Blockmaster() {
 
 					
 					
-					<img src={blockMaster1} className="blockmaster1-img"/></div>
+					<img src={blockMaster1} className="blockmaster1-img"/>
+					</div>
 					
 					</div>
-<h3>Are you a Seasoned Builder? Crafty Adventurer? Visionary Developer?</h3>
+					
+<div className="blockmaster-intro">
+<h3>Are you a Seasoned Builder? A Crafty Adventurer? A Visionary Developer?</h3>
+<div className="blockmaster-img-wrapper">
+<img src="./projects/blockmaster/gpucube.png"/>
+<p> BlockMaster AI is a new state-of-the-art tool suite currently being developed to broaden the horizons of Minecraft and push the game to its limits. We are currently developing for Minecraft servers, so everyone can enjoy the enhancements easily!<br/><br/>
 
-<p> BlockMaster AI is a new state-of-the-art tool suite currently being developed for deployment on Minecraft servers. 
+<img className="blockmaster-mobile-only" src="./projects/blockmaster/variantblock.png"/>
+<br className="blockmaster-mobile-only" /><br className="blockmaster-mobile-only" />
 
-Through training specially tuned language models and constructing generative AI architectures, we are developing a range of cutting edge tools that will learn and improve from existing Minecraft data. BlockMaster uses the most advanced, latest technologies and AI developments revolutionize the way you interact with your Minecraft world!</p><h3>What can BlockMaster actually do?</h3>
-<p>That's a good question! Feel free to scroll through the list of features we are currently developing and intend to develop in the future.</p>
+
+Through training specially tuned language models and constructing generative AI architectures, we are developing a range of cutting edge tools that will learn and improve from existing Minecraft data. BlockMaster uses the most advanced, latest technologies and AI developments revolutionize the way you interact with your Minecraft world!</p></div>
+
+<h3>What can BlockMasterAI assist with and do?</h3>
+<p>That's a good question! Here is a list of the tools and features we are either currently working on, or intend to develop in the future.</p></div>
 <div id="blockmaster-features-root">
 
 <div className="blockmaster-feature">
@@ -43,14 +53,14 @@ Through training specially tuned language models and constructing generative AI 
 </div>
 
 <div className="blockmaster-feature">
-<img src="./projects/blockmaster/swaptextureicon.png"/>
+<img id="blockmaster-railwayimg" src="./projects/blockmaster/railway.png"/>
 	<div className="blockmaster-feature-inner-wrapper">
 
-		<h1>Hot-Swappable Textures</h1>
+		<h1>Enhanced Build Ideas</h1>
 	
-		<p>Tired of the same textures? Use the advanced image swapper to generate unique block textures tailored to your build. From exotic materials to entirely new creations, BlockMaster's hotswaps let you customize your world like never before.
+		<p>Get personalized suggestions for your builds by simply uploading a screenshot of your world. BlockMasterAI analyzes your designs and offers creative ideas to take your projects to the next level!
 		
-		<br/><strong>How does it work?</strong> We use a regressive GAN to generate new textures on the fly. </p>
+		<br/><strong>How does it work?</strong> This feature makes use of tokenizers to generate a descriptive prompt of a Minecraft scene.</p>
 		
 	</div>
 </div>
@@ -67,6 +77,8 @@ Through training specially tuned language models and constructing generative AI 
 		
 	</div>
 </div>
+
+
 
 </div>
 <div className="blockmaster-description-wrapper">
@@ -97,7 +109,7 @@ Through training specially tuned language models and constructing generative AI 
 
 </div>
 </div>
-</header>
+</div>
 </div>
 
     );

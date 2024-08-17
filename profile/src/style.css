@@ -252,20 +252,22 @@ footer {
 	display:flex;
 	flex-direction:row;
 	align-items: center;
-	
+	margin:0;
+	border:0;
+	padding:0;
 }
 
 .blockmaster-hero-container {
-	margin: 0rem 2rem;
+	margin:0;
+	padding:0rem;
 }
 
+
 .blockmaster-hero-container h1 {
-	display:block;
     color: #00ff85;
 	font-family: 'Titillium Web';
     margin-bottom: -1rem;
 	font-size:4.5vw;
-	margin-left:-1rem;
 }
 
 .blockmaster-hero-container h2 {
@@ -287,8 +289,8 @@ footer {
 }
 
 .blockmaster-hero-container h3 {
-		font-size: 2rem;
-		font-family:'Titillium Web';
+	font-size: 3rem;
+	font-family:'Titillium Web';
 
 }
 
@@ -300,6 +302,11 @@ footer {
 	text-align:left;
 	margin-left:4rem;
 
+}
+
+.blockmaster-intro {
+	margin:0rem 5rem;
+	padding:1rem;
 }
 
 .blockmaster-profile-wrapper h2 {
@@ -320,15 +327,31 @@ footer {
 	flex-wrap:no-wrap;
 }
 
+.blockmaster-img-wrapper {
+	display: flex;
+	flex-direction:row;
+	align-items: center;
+}
+
+.blockmaster-img-wrapper img {
+	width:30rem;
+	height:30rem;
+}
+
+.blockmaster-mobile-only {
+	display:none;
+}
+
 #blockmaster-features-root {
 	display:flex;
 	flex-direction:column;
 	justify-content:space-evenly;
 	flex-wrap: wrap;
-	margin:5rem 0rem;
 }
 
-
+::-webkit-scrollbar {
+    display: none;
+}
 
 .blockmaster-feature {
 	height:auto;
@@ -338,7 +361,6 @@ footer {
 	align-items: center;
     justify-content: space-around;
 	
-	margin:0rem -4rem;
 }
 
 .blockmaster-feature:nth-child(1) {
@@ -348,6 +370,10 @@ footer {
 	background-color:334400;
 }
 
+.blockmaster-feature:nth-child(3) {
+	background-color:003344;
+}
+
 .blockmaster-feature:nth-child(odd) {
 	flex-direction:row;
 }
@@ -355,6 +381,8 @@ footer {
 .blockmaster-feature:nth-child(even) {
 	flex-direction:row-reverse;
 }
+
+
 
 
 .blockmaster-feature-inner-wrapper {
@@ -372,7 +400,7 @@ footer {
 }
 
 .blockmaster-feature img {
-	height:20rem;
+	height:25rem;
 }
 
 .blockmaster-feature p {
@@ -392,7 +420,6 @@ footer {
 	color:black;
 	padding:5rem 4rem;
 	padding-bottom:6rem;
-	margin:0rem -4rem;
 	
 	
 }
@@ -423,7 +450,6 @@ footer {
 	color:white;
 	padding:5rem 4rem;
 	padding-bottom:6rem;
-	margin:0rem -4rem;
 	
 	
 }
@@ -448,7 +474,6 @@ footer {
 }
 
 #blockmaster-footer {
-	width:100%;
 	padding:1rem;
 	height:1.3rem;
 	display:flex;
@@ -458,9 +483,6 @@ footer {
 	justify-content:space-around
 	}
 
-.blockmaster-footer-element {
-	
-}
 
 @media screen and (max-width: 768px) {
 	
@@ -536,24 +558,25 @@ footer {
 	}
 	
 	#blockmaster-hero {
-		flex-direction:column;
-		align-items: flex-end;
-		padding:0.2rem 0rem;
-	
+		flex-direction: column;
+		padding: 0;
+		margin:0rem;
 	}
 
 	.blockmaster-hero-container {
-		margin:0rem 0.5rem;
 		text-align: center;
-		
 	}
-
-	.blockmaster-hero-container h1 {
+	
+	#blockmaster-profile-text-wrapper {
+		margin: 0rem;
+	}
+	
+	#blockmaster-profile-text-wrapper h1 {
 		font-family: 'Titillium Web';
-		font-size: 3rem;
-		line-height:1.36;
-		text-align: center;
-		margin: 1.5rem 0.3rem;
+		font-size: 3.5rem; 
+		line-height: 1.5;
+		margin:1rem 1.7rem;
+		display:flex;
 	}
 	
 	.blockmaster1-img {
@@ -561,147 +584,196 @@ footer {
 	}
 	
 	.blockmaster1-img-mobile {
-		display:unset;
-		height:20rem;
-		margin-left:-2rem;
-		margin-right: -1rem;
-		margin-bottom: 1.5rem;
-		width:100%;
-		height:100%;
-		
-		
-	}
-
-	.blockmaster-hero-container h2 {
-		font-size:2.3rem;
-		text-align:center;
+		display: unset;
+		width: 100%;
 		margin:0rem;
-
+		height: auto;
+		
+		
+		
 	}
 
-	.blockmaster-hero-container p {
-		font-size:1.7rem;
-		margin:1.5rem;
+	.blockmaster-intro {
+		margin:0rem 1rem;
+		text-align:left;
+		
 	}
-
-	.blockmaster-hero-container h3 {
-			font-size: 2rem;
-			font-family:'Titillium Web';
-			margin-top:5rem;
+	
+	.blockmaster-intro h2 {
+		font-size: 2rem;
+		text-align: center;
 	}
+	
+	.blockmaster-intro p {
+		font-size: 1.7rem;
+		
+	}
+	
+	.blockmaster-intro h3 {
+		font-size: 2.1rem; 
+		font-family: 'Titillium Web';
 
+		
+	}
+	
 	#blockmaster-profile-text-wrapper {
-		display:flex;
-		flex-direction:column;
-		margin:0rem 2rem;
-		text-align:center;
-		align-items:center;
-
+		display: flex;
+		flex-direction: column;
+		
 	}
-
+	
 	.blockmaster-profile-wrapper h2 {
-		font-size:2.5rem;
+		font-size: 2rem;
 	}
-
+	
 	.blockmaster-profile-wrapper {
-		display:flex;
-		flex-direction:column-reverse;
-		align-items:center;
-		justify-content:center;
+		display: flex;
+		flex-direction: column-reverse;
+		align-items: center;
+		justify-content: center;
+		
+		margin:0rem;
+	}
+	
+	.blockmaster-img-wrapper {
+		display:none;
+	}
+	
+	.blockmaster-img-wrapper {
+		display: flex;
+		flex-direction: column;
+	}
+	
+	.blockmaster-img-wrapper img {
+		width:20rem;
+		height:20rem;
+	}
+	
+	.blockmaster-mobile-only {
+		display:u;
 	}
 	
 	#blockmaster-features-root {
-		display:flex;
-		flex-direction:column;
-		justify-content:space-evenly;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-evenly;
 		flex-wrap: wrap;
-		margin:5rem 0rem;
 	}
-
-
-
+	
 	.blockmaster-feature {
-		height:auto;
-		display:flex;
-		align-items:flex-start;
-		padding:0;
+		height: auto;
+		display: flex;
 		align-items: center;
-		justify-content: space-even;
-		margin:0rem 0rem;
+		padding: 1rem;
+		justify-content: center;
 	}
-
+	
 	.blockmaster-feature:nth-child(1) {
-		background-color:440000;
+		background-color: #440000; 
 	}
 	.blockmaster-feature:nth-child(2) {
-		background-color:334400;
+		background-color: #334400; 
 	}
-
-	.blockmaster-feature:nth-child(odd) {
-		flex-direction:column;
-	}
-
+	
+	.blockmaster-feature:nth-child(odd),
 	.blockmaster-feature:nth-child(even) {
-		flex-direction:column;
+		flex-direction: column;
 	}
-
-
+	
 	.blockmaster-feature-inner-wrapper {
-		display:flex;
-		flex-direction:column;
-		margin-left:0rem;
+		display: flex;
+		flex-direction: column;
+		margin: 0rem 1rem;
+		
 	}
-
+	
 	.blockmaster-feature h1 {
-		font-family:'Titillium Web';
-		font-size:3rem;
-		margin:unset;
-		color:white;
-		
+		font-family: 'Titillium Web';
+		font-size: 2.5rem; 
+		margin: 0rem 0.5rem;
+		color: white;
 	}
-
+	
 	.blockmaster-feature img {
-		height:10rem;
-		margin:2rem 0rem;
+		height: 18rem;
+		margin: 1.5rem 1rem;
 	}
-
+	
 	.blockmaster-feature p {
-		font-family:'Titillium Web';
-		font-size:1.5rem;
-		text-align:center;
-		line-height:1.7;
-		color:white;
-		margin:2rem 2rem;
-		
+		font-family: 'Titillium Web';
+		font-size: 1.6rem;
+		text-align: center;
+		line-height: 1.7;
+		color: white;
+		margin: 1.5rem 0.2rem;
 	}
 	
 	.blockmaster-description-wrapper {
-		display:flex;
-		flex-direction:column;
-		align-items:flex-start;
-		margin:0rem 0rem;
-		
-		
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		margin: 0rem 0rem;
 	}
 	
 	.blockmaster-description-wrapper h3 {
-		font-size:2.5rem;
-		margin:2rem -4rem;
+		font-size: 3rem;
+		margin: 1.5rem 0rem;
+		line-height:4rem;
 	}
-
+	
 	.blockmaster-description-text-wrapper {
-		display:flex;
-		flex-direction:column;
-		align-items:flex-start;
-		margin:0rem 1rem;
-	}
-
-	.blockmaster-description-wrapper img {
-		width:20rem;
-		height:auto;
-		margin:0rem -4rem;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		margin: 0rem 0rem;
 		
 	}
+	
+	.blockmaster-description-wrapper img {
+		width: 100%;
+		height: auto;
+		margin: 0rem 0rem;
+	}
+	
+	.blockmaster-developer-wrapper {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		background-color: #000033; 
+		color: white;
+		padding: 3rem 0rem;
+		display:none;
+	}
+	
+	.blockmaster-developer-text-wrapper {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		margin-right: 0rem;
+	}
+	
+	.blockmaster-developer-wrapper img {
+		width: 50%; 
+		border-radius: 2rem; 
+	}
+	
+	.blockmaster-developer-wrapper h3 {
+		font-size: 1.8rem;
+		text-align: center;
+	}
+	
+	#blockmaster-footer {
+		width: 100%;
+		padding: 0rem;
+		height: 1.3rem;
+		display: flex;
+		font-size: 1.4rem;
+		flex-direction: row;
+		font-family: 'Segoe UI';
+		justify-content: space-around;
+		display: none;
+	}
+
 	
 
 	
