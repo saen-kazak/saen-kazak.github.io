@@ -466,6 +466,7 @@ footer {
 	width:30%;
 	border-radius:4rem;
 	
+	
 }
 
 .blockmaster-developer-wrapper h3 {
@@ -741,7 +742,7 @@ footer {
 		align-items: center;
 		background-color: #000033; 
 		color: white;
-		padding: 3rem 0rem;
+		padding: 0rem 0rem;
 	}
 	
 	.blockmaster-developer-text-wrapper {
@@ -749,24 +750,40 @@ footer {
 		flex-direction: column;
 		align-items: center;
 		margin-right: 0rem;
+		
 	}
+
+
+	
+	.blockmaster-developer-text-wrapper p {
+		font-size:1.4rem;
+		margin:1rem 1rem;
+		margin-bottom:2rem;
+		padding:0;
+		
+		}
+	
+
 	
 	.blockmaster-developer-wrapper img {
-		width: 50%; 
-		border-radius: 2rem; 
+		width: 80%; 
+		border-radius: 2rem;
+		margin-bottom:4rem;
+		
 	}
 	
 	.blockmaster-developer-wrapper h3 {
-		font-size: 1.8rem;
+		font-size: 3rem;
 		text-align: center;
+		margin-bottom:1rem;
 	}
 	
 	#blockmaster-footer {
 		width: 100%;
-		padding: 0rem;
+		padding: 1rem 0rem;
 		height: 1.3rem;
 		display: flex;
-		font-size: 1.4rem;
+		font-size: 1rem;
 		flex-direction: row;
 		font-family: 'Segoe UI';
 		justify-content: space-around;
