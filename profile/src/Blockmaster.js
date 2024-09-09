@@ -95,7 +95,7 @@ Through training specially tuned language models and constructing generative AI 
 <div className="blockmaster-developer-text-wrapper">
 		<h3>About the Developer</h3>
 		<p>Saen Kazak is a software developer who has been modding Minecraft for over 11 years. He holds a Computer Science degree from Brunel (University of London), where he conducted award-winning research into the use of AI in accessibility.<br/><br/>
-		<strong>Do you want to suggest ideas or collaborate?<br/><br/></strong>Drop an email to <strong>saen@minecraftengineering.org</strong> and I'll get back to you!<br/><br/> Alternatively, you can message me on <a href="http://linkedin.com/in/saen-kazak">LinkedIn by clicking here.</a></p>
+		<strong>Do you want to suggest ideas or collaborate?<br/><br/></strong>Drop an email to <strong>saenkazak@gmail.com</strong> and I'll get back to you!<br/><br/> Alternatively, you can message me on <a href="http://linkedin.com/in/saen-kazak">LinkedIn by clicking here.</a></p>
 		
 </div>
 <img src="./projects/blockmaster/saenooos.png"/>
