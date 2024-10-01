@@ -575,6 +575,57 @@ footer {
 	border-radius:100%;
 }
 
+.blockmaster-update-block-contents-example-prompt {
+	font-family: 'Calibri';
+	padding:2rem 0rem;
+	font-size:1.5rem;
+	color:white;
+	border-radius:.5rem .5rem 0rem 0rem;
+}
+
+.blockmaster-update-block-contents-example-tuned-and-untuned-wrapper {
+	display: flex;
+	flex-direction:row;
+	line-height:1.5;
+	margin-bottom:0
+	
+}
+
+.blockmaster-update-block-contents-example-untuned {
+	background-color:333366;
+	padding:0.5rem 1.5rem 2rem 1.5rem;
+	color:dddddd;
+	font-size:1.2rem;
+	font-family:'Titillium Web';
+}
+
+.blockmaster-update-block-contents-example-tuned {
+	background-color:336633;
+	padding:0.5rem 1.5rem 2rem 1.5rem;
+	color:dddddd;
+	font-size:1.2rem;
+	font-family:'Titillium Web';
+}
+
+.blockmaster-update-block-contents-example-tuned-and-untuned-wrapper h3{
+	margin:0.5rem 0rem 0rem 0rem;
+
+}
+
+.blockmaster-update-block-contents-example-verdict p {
+	margin:0;
+	font-size:1.3rem;
+	line-height:2;
+	
+
+}
+
+.blockmaster-update-block-contents-example-verdict {
+	padding:1rem;
+	margin:0;
+	background:black;
+}
+
 .blockmaster-developer-wrapper {
 	display:flex;
 	flex-direction:row;
@@ -922,7 +973,7 @@ footer {
 	.blockmaster-update-block-pinned, .blockmaster-update-block {
 		border-radius:0;
 		margin:0;
-		padding:0rem 1.7rem;
+		padding:0rem 0rem;
 		background:0;
 	}
 	
@@ -937,18 +988,69 @@ footer {
 	}
 	
 	.blockmaster-update-block-title-stamp {
+		margin:0rem 1rem;
 		margin-bottom:1rem;
+		
 	}
 	
 	.blockmaster-update-block-contents p {
 		margin:0;
+		padding:0rem 1.5rem;
 	}
 	
 	.blockmaster-update-image {
 		width:100%;
 		margin:1rem 0rem;
-		
 		border: 0;
+	}
+	
+	.blockmaster-update-block-contents-example-prompt {
+		font-size:1.5rem;
+		color:white;
+		border-radius:0rem;
+		margin:0;
+		padding:2rem 1.5rem;
+		text-align:left;
+		line-height:1.5;
+	}
+
+	.blockmaster-update-block-contents-example-tuned-and-untuned-wrapper {
+		flex-wrap:wrap;
+	}
+
+	.blockmaster-update-block-contents-example-untuned, .blockmaster-update-block-contents-example-tuned {
+		font-size:1.4rem;
+		text-align:left;
+		margin:0;
+	}
+
+	
+	.blockmaster-update-block-contents-example-verdict p {
+		font-size:1.5rem;
+		text-align:left;
+		font-family:'Titillium Web';
+		padding:2rem;
+		
+
+		
+
+	}
+	
+	.blockmaster-update-block-contents p {
+		text-align:left;
+		margin: 1rem 0rem;
+	}
+	
+	.blockmaster-update-image {
+		margin-top:0rem;
+		margin-bottom: 0.5rem;
+	}
+
+	.blockmaster-update-block-contents-example-verdict {
+		padding:0rem;
+		margin:0;
+		background:black;
+
 	}
 	
 	.blockmaster-developer-wrapper {
