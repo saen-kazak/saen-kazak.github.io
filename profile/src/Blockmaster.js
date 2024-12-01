@@ -1,5 +1,4 @@
 import React from 'react';
-import profilePic from './saenoooos.svg'
 import blockMaster1 from './blockmaster/blockMaster1.png'
 function Blockmaster() {
     return (
@@ -45,13 +44,13 @@ Through training specially tuned language models and constructing generative AI 
 
 <div className="blockmaster-feature">
 
-<img src="./projects/blockmaster/saenoos-mic.png"/>
+<img src="./projects/blockmaster/saenoos-mic.png" />
 
 <div className="blockmaster-feature-inner-wrapper">
 	<h1>Integrated Chatbot</h1>
-	
+
 	<p>Need advice or inspiration while playing? Just type /ai in-game and ask our AI chatbot anything Minecraft-related.<br/>Get instant answers, tips, and ideas right within your server.<br/><strong>How does it work?</strong> Our chatbot consists of a hosted language model core, fine-tuned on countless Minecraft-specific wiki articles, forum data and game insights.</p></div>
-	
+
 
 </div>
 
@@ -60,11 +59,11 @@ Through training specially tuned language models and constructing generative AI 
 	<div className="blockmaster-feature-inner-wrapper">
 
 		<h1>Enhanced Build Ideas</h1>
-	
+
 		<p>Get personalized suggestions for your builds by simply uploading a screenshot of your world. BlockMasterAI analyzes your designs and offers creative ideas to take your projects to the next level!
-		
+
 		<br/><strong>How does it work?</strong> This feature makes use of tokenizers to generate a descriptive prompt of a Minecraft scene.</p>
-		
+
 	</div>
 </div>
 
