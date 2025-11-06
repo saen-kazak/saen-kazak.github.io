@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b72f2cda-5ebd-49b9-a7b7-6c9d358d0a6f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/profile/src/Queens.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/profile/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/profile/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/profile/public/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/profile/public/favicon.ico" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/profile/public/hi-isolde/memegen.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/profile/public/logo192.png" beforeDir="false" afterPath="$PROJECT_DIR$/profile/public/logo192.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/profile/public/logo512.png" beforeDir="false" afterPath="$PROJECT_DIR$/profile/public/logo512.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/profile/public/projects/8queens/Pasted image 20230621061448 1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/profile/public/projects/8queens/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/profile/public/projects/8queens/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/profile/public/projects/blockmaster/updates.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/profile/src/AiToolList.js" beforeDir="false" afterPath="$PROJECT_DIR$/profile/src/AiToolList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/profile/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/profile/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/profile/src/App.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/profile/src/Blockmaster.js" beforeDir="false" afterPath="$PROJECT_DIR$/profile/src/Blockmaster.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/profile/src/Maintenance.js" beforeDir="false" afterPath="$PROJECT_DIR$/profile/src/Maintenance.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/profile/src/Nopage.js" beforeDir="false" afterPath="$PROJECT_DIR$/profile/src/Nopage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/profile/src/Profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/profile/src/Profile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/profile/src/Projects.js" beforeDir="false" afterPath="$PROJECT_DIR$/profile/src/Projects.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/profile/src/blockmaster/blockMaster1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/profile/src/header-pattern.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/profile/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/profile/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/profile/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/profile/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/profile/src/logo.svg" beforeDir="false" afterPath="$PROJECT_DIR$/profile/src/logo.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/profile/src/reportWebVitals.js" beforeDir="false" afterPath="$PROJECT_DIR$/profile/src/reportWebVitals.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/profile/src/saenoooos.svg" beforeDir="false" afterPath="$PROJECT_DIR$/profile/src/saenoooos.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/profile/src/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/profile/src/style.css" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="2pcyJSOHrQxi4awIbLJTmTrEL0i" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Node.js.Blockmaster.js.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;profile&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/GitD/saen-kazak/profile/src&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.development.executor&quot;: &quot;Run&quot;,
+    &quot;npm.production-deploy.executor&quot;: &quot;Run&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.IDE.editor.colors.General&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\WebStorm 2024.3\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\GitD\saen-kazak\profile\src" />
+    </key>
+  </component>
+  <component name="RunManager" selected="npm.development">
+    <configuration name="development" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/profile/package.json" />
+      <command value="start" />
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="production-deploy" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/profile/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="deploy" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="npm.development" />
+      <item itemvalue="npm.production-deploy" />
+    </list>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-e768b9ed790e-JavaScript-WS-243.21565.180" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b72f2cda-5ebd-49b9-a7b7-6c9d358d0a6f" name="Changes" comment="" />
+      <created>1733079586855</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1733079586855</updated>
+      <workItem from="1733079588568" duration="2138000" />
+      <workItem from="1733086609015" duration="7654000" />
+      <workItem from="1733536639560" duration="9823000" />
+      <workItem from="1733557534930" duration="2887000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

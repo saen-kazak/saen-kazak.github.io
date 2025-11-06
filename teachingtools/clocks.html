@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Teaching Clock</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    user-select:none;
+    -webkit-user-select:none;
+}
+
+*:focus,
+*:focus-visible{
+    outline:none !important;
+}
+
+body{
+    margin:0;
+    background:#eef8ff;
+    font-family:Trebuchet MS,Arial,sans-serif;
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.container{
+
+    position:relative;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    width:100%;
+
+}
+
+.clockPanel{
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+
+}
+
+.optionsPanel{
+
+    position:absolute;
+
+    left:calc(50% + 320px);
+
+    top:50%;
+    transform:translateY(-50%);
+
+    background:white;
+    border-radius:20px;
+    padding:24px;
+    min-width:240px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.15);
+
+}
+
+@media (max-width:1000px){
+
+    .container{
+        display:block;
+        text-align:center;
+    }
+
+    .optionsPanel{
+
+        position:static;
+        transform:none;
+
+        margin:30px auto 0;
+        width:300px;
+
+    }
+
+}
+
+.optionsPanel h2{
+
+    margin-top:0;
+    margin-bottom:18px;
+
+    color:#1976d2;
+
+}
+
+.optionsPanel label{
+
+    display:flex;
+    align-items:center;
+
+    gap:10px;
+
+    margin:14px 0;
+
+    font-size:1.1rem;
+
+}
+
+h1{
+    color:#1976d2;
+    margin-bottom:15px;
+	font-size:3rem;
+}
+
+canvas{
+    background:yellow;
+    border-radius:50%;
+    box-shadow:0 8px 20px rgba(0,0,0,.15);
+    touch-action:none;
+    cursor:pointer;
+    outline:none;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+	
+}
+
+.controls{
+
+    margin-top:25px;
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    flex-wrap:wrap;
+
+    font-size:1.1rem;
+
+}
+
+label{
+    cursor:pointer;
+}
+
+.timeDisabled{
+
+    opacity:.45;
+
+    pointer-events:none;
+
+}
+
+#digital{
+    margin-top:25px;
+    font-size:4rem;
+    color:#1976d2;
+    font-weight:bold;
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="clockPanel">
+
+
+<h1>🕒 Teaching Clock</h1>
+
+
+
+
+<canvas
+id="clock"
+width="500"
+height="500"
+tabindex="-1"></canvas>
+
+<div id="digital"></div>
+
+</div>
+
+
+<div class="optionsPanel">
+
+<h2>⚙ Options</h2>
+
+<label>
+<input
+type="checkbox"
+id="snap">
+Snap to 5 minutes
+</label>
+
+<label>
+<input
+type="checkbox"
+id="showDigital"
+checked>
+Show digital time
+</label>
+
+<label id="label24">
+    <input
+        type="radio"
+        name="timeFormat"
+        id="show24">
+    24-Hour Time
+</label>
+
+<label id="label12">
+    <input
+        type="radio"
+        name="timeFormat"
+        id="showAmPm"
+        checked>
+    12-Hour Time
+</label>
+
+</div>
+
+
+</div>
+
+<script>
+
+const canvas=document.getElementById("clock");
+const ctx=canvas.getContext("2d");
+
+const digital=document.getElementById("digital");
+const snap=document.getElementById("snap");
+const showDigital=document.getElementById("showDigital");
+
+const show24 = document.getElementById("show24");
+const showAmPm = document.getElementById("showAmPm");
+
+const cx=250;
+const cy=250;
+const radius=210;
+
+let totalMinutes=180;
+
+
+let dragging=false;
+let hoverMinute=false;
+
+let mouseX=0;
+let mouseY=0;
+
+function draw(){
+
+ctx.clearRect(0,0,500,500);
+
+ctx.beginPath();
+ctx.arc(cx,cy,radius,0,Math.PI*2);
+ctx.fillStyle="white";
+ctx.fill();
+
+ctx.lineWidth=8;
+ctx.strokeStyle="#1754b0";
+ctx.stroke();
+
+
+
+for(let i=0;i<60;i++){
+
+const angle=i*Math.PI/30-Math.PI/2;
+
+const outer=radius-5;
+const inner=i%5===0?radius-25:radius-15;
+
+ctx.beginPath();
+
+ctx.moveTo(
+cx+Math.cos(angle)*inner,
+cy+Math.sin(angle)*inner
+);
+
+ctx.lineTo(
+cx+Math.cos(angle)*outer,
+cy+Math.sin(angle)*outer
+);
+
+ctx.lineWidth=i%5===0?4:2;
+ctx.strokeStyle="#555";
+ctx.stroke();
+
+}
+
+
+
+ctx.font="28px Trebuchet MS";
+ctx.fillStyle="#333";
+ctx.textAlign="center";
+ctx.textBaseline="middle";
+
+for(let i=1;i<=12;i++){
+
+const angle=i*Math.PI/6-Math.PI/2;
+
+ctx.fillText(
+
+i,
+
+cx+Math.cos(angle)*(radius-55),
+
+cy+Math.sin(angle)*(radius-55)
+
+);
+
+}
+
+
+
+ctx.font="18px Trebuchet MS";
+ctx.fillStyle="#1976d2";
+
+for(let i=5;i<=60;i+=5){
+
+const angle=(i/5)*Math.PI/6-Math.PI/2;
+
+ctx.fillText(
+
+i,
+
+cx+Math.cos(angle)*(radius+22),
+
+cy+Math.sin(angle)*(radius+22)
+
+);
+
+}
+
+
+
+const hours=(totalMinutes/60)%12;
+const minutes=totalMinutes%60;
+
+
+const hourAngle=hours*Math.PI/6-Math.PI/2;
+const minuteAngle=minutes*Math.PI/30-Math.PI/2;
+
+
+
+ctx.beginPath();
+ctx.moveTo(cx,cy);
+
+ctx.lineTo(
+
+cx+Math.cos(hourAngle)*110,
+
+cy+Math.sin(hourAngle)*110
+
+);
+
+ctx.lineWidth=8;
+ctx.lineCap="round";
+ctx.strokeStyle="#e53935";
+ctx.stroke();
+
+
+
+const minuteEndX=
+cx+Math.cos(minuteAngle)*165;
+
+const minuteEndY=
+cy+Math.sin(minuteAngle)*165;
+
+
+
+ctx.beginPath();
+
+ctx.moveTo(cx,cy);
+
+ctx.lineTo(
+
+minuteEndX,
+
+minuteEndY
+
+);
+
+ctx.lineWidth=
+hoverMinute||dragging?9:6;
+
+ctx.strokeStyle=
+hoverMinute||dragging
+?"#00c853"
+:"#1e88e5";
+
+ctx.stroke();
+
+
+
+ctx.beginPath();
+
+ctx.arc(cx,cy,8,0,Math.PI*2);
+
+ctx.fillStyle="#444";
+ctx.fill();
+
+let hours24 = Math.floor(totalMinutes / 60);
+
+let displayMinute = (totalMinutes % 60)
+    .toString()
+    .padStart(2, "0");
+
+let display;
+
+if (show24.checked) {
+
+    display =
+        String(hours24).padStart(2, "0") +
+        ":" +
+        displayMinute;
+
+} else {
+
+    let hours12 = hours24 % 12;
+    if (hours12 === 0) hours12 = 12;
+
+    display =
+        hours12 +
+        ":" +
+        displayMinute;
+
+display += hours24 < 12 ? " AM" : " PM";
+
+}
+
+digital.textContent = display;
+
+digital.style.visibility =
+    showDigital.checked
+    ? "visible"
+    : "hidden";
+
+
+}
+
+function pointToSegmentDistance(px, py, x1, y1, x2, y2){
+
+    const dx = x2 - x1;
+    const dy = y2 - y1;
+
+    const lengthSquared = dx*dx + dy*dy;
+
+    let t = ((px-x1)*dx + (py-y1)*dy) / lengthSquared;
+
+    t = Math.max(0, Math.min(1, t));
+
+    const closestX = x1 + t*dx;
+    const closestY = y1 + t*dy;
+
+    const distX = px - closestX;
+    const distY = py - closestY;
+
+    return Math.sqrt(distX*distX + distY*distY);
+
+}
+
+function updateHover(e){
+
+    const rect = canvas.getBoundingClientRect();
+
+    mouseX = e.clientX - rect.left;
+    mouseY = e.clientY - rect.top;
+
+    const minutes = totalMinutes % 60;
+    const minuteAngle = minutes*Math.PI/30 - Math.PI/2;
+
+    const endX = cx + Math.cos(minuteAngle)*165;
+    const endY = cy + Math.sin(minuteAngle)*165;
+
+    hoverMinute =
+        pointToSegmentDistance(
+            mouseX,
+            mouseY,
+            cx,
+            cy,
+            endX,
+            endY
+        ) < 18;
+
+}
+
+function updateFromPointer(e){
+
+    const rect = canvas.getBoundingClientRect();
+
+    const x = e.clientX - rect.left - cx;
+    const y = e.clientY - rect.top - cy;
+
+    let angle = Math.atan2(y,x) + Math.PI/2;
+
+    if(angle < 0)
+        angle += Math.PI*2;
+
+    let minute =
+        Math.round(angle/(Math.PI*2)*60) % 60;
+
+    if(snap.checked){
+
+        minute =
+            Math.round(minute/5)*5;
+
+        if(minute===60)
+            minute=0;
+
+    }
+
+    const previousMinute = totalMinutes % 60;
+
+    if(previousMinute > 45 && minute < 15)
+        totalMinutes += 60;
+
+    if(previousMinute < 15 && minute > 45)
+        totalMinutes -= 60;
+
+	totalMinutes =
+		Math.floor(totalMinutes/60)*60 +
+		minute;
+
+	// 1440 mins for precise time
+	totalMinutes = ((totalMinutes % 1440) + 1440) % 1440;
+	draw();
+
+}
+
+show24.addEventListener("change", () => {
+
+    showAmPm.disabled = show24.checked;
+
+    if (show24.checked) {
+        showAmPm.checked = false;
+    }
+
+    draw();
+
+});
+
+
+
+showAmPm.addEventListener("change", draw);
+
+canvas.addEventListener("pointermove",e=>{
+
+    updateHover(e);
+
+    if(dragging)
+        updateFromPointer(e);
+
+    draw();
+
+});
+
+canvas.addEventListener("pointerdown",e=>{
+
+    updateHover(e);
+
+    if(hoverMinute){
+
+        dragging = true;
+
+        canvas.setPointerCapture(e.pointerId);
+
+        updateFromPointer(e);
+
+    }
+
+});
+
+canvas.addEventListener("pointerup",()=>{
+
+    dragging = false;
+
+    draw();
+
+});
+
+canvas.addEventListener("pointercancel",()=>{
+
+    dragging = false;
+
+    draw();
+
+});
+
+canvas.addEventListener("pointerleave",()=>{
+
+    if(!dragging){
+
+        hoverMinute = false;
+
+        draw();
+
+    }
+
+});
+
+function updateTimeOptions(){
+
+    const disabled = !showDigital.checked;
+
+    show24.disabled = disabled;
+    showAmPm.disabled = disabled;
+
+    document
+        .getElementById("label24")
+        .classList.toggle("timeDisabled", disabled);
+
+    document
+        .getElementById("label12")
+        .classList.toggle("timeDisabled", disabled);
+
+}
+
+showDigital.addEventListener("change", () => {
+
+    updateTimeOptions();
+    draw();
+
+});
+
+
+snap.addEventListener("change",draw);
+
+draw();
+
+</script>
+
+</body>
+</html>

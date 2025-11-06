@@ -1,0 +1,372 @@
+<style>
+
+* { font-family:Segoe UI; Arial;}
+
+
+h3, h2, h1, strong { font-family:Segoe UI Semibold; }
+
+blockquote {
+border-left: 3px solid green;
+padding: 0 1vw;
+}
+
+h2 {
+font-size:1.7em;
+}
+
+body {
+    position: absolute;
+    left: 23%;
+    right: 23%;
+    top: 8%;
+}
+
+img {
+
+max-width:100%;
+
+}
+
+div {
+    background: white;
+    padding-left: 10%;
+    border-radius: 4vw;
+    padding-right: 10%;
+    padding-top: 5%;
+}
+
+@media only screen and (max-width: 1024px) {
+  body {
+    position: absolute;
+    left: 0;
+    right: 0;
+	top:0;
+	padding:0;
+	margin:0;
+  }
+  
+  div {
+  border-radius: 0px;
+	}
+	
+	
+  
+}
+
+</style>
+
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<script src="
+https://cdn.jsdelivr.net/npm/markdown-it@13.0.1/dist/markdown-it.min.js
+"></script>
+
+<body><div>
+<h1 id="-span-style-text-decoration-underline-3px-green-text-underline-offset-10px-margin-0-comparing-algorithms-span-"><span style="text-decoration: underline 3px green;text-underline-offset:10px;margin:0;">Comparing Algorithms</span></h1>
+<h1 id="run-time">Run Time</h1>
+<p>The running time of an algorithm:</p>
+<ul>
+<li><strong>varies</strong> based on the <strong>input</strong>.</li>
+<li>often increases as the <strong>input size</strong> increases.</li>
+<li>may be <strong>faster</strong> on certain data sets than others.</li>
+</ul>
+<p><strong>Case Times</strong>
+Algorithms will have a <strong>best</strong> case time, <strong>worst</strong> case time and <strong>average</strong> case time.</p>
+<ul>
+<li>The <strong>best case</strong> does not really tell us much as it usually doesn&#39;t happen very often.</li>
+<li>The <strong>average case</strong> can be difficult to determine as it often requires a lot of testing.</li>
+<li>The <strong>worst case</strong> is most useful and is <strong>easier to analyse</strong>.</li>
+</ul>
+<h1 id="experimental-studies">Experimental Studies</h1>
+<p>Programs can be written that <strong>implement</strong> the algorithm and the resulting run times can be <strong>plotted</strong>.</p>
+<p>However, this brings about some <strong>limitations</strong>:</p>
+<ul>
+<li>Implementing the algorithm can be <strong>difficult</strong>.</li>
+<li>Results may <strong>not</strong> be indicative of certain inputs.</li>
+<li>The same <strong>hardware</strong> and <strong>software</strong> must be used.</li>
+</ul>
+<h1 id="asymptotic-analysis">Asymptotic Analysis</h1>
+<ul>
+<li>Using a <strong>high level description</strong> of the algorithm instead of an <strong>implementation</strong>.</li>
+<li>Calculating how the <strong>running time</strong> varies with <strong>input size</strong>.</li>
+</ul>
+<p>To estimate the running time, we can:</p>
+<ul>
+<li>Use <strong>pseudocode</strong> to construct the algorithm.</li>
+<li>Count the number of <strong>steps</strong> in terms of primitive operations.</li>
+</ul>
+<p>We refer to the running time of an algorithm as <strong>T(n)</strong> where <strong>n = input size</strong> or <strong>T(n,m,...)</strong> if there is more than one input.</p>
+<p><strong>T(n)</strong> can be used to calculate the Big-O of an algorithm, <strong>O(n)</strong>.</p>
+<h1 id="-span-style-text-decoration-underline-3px-green-text-underline-offset-10px-margin-0-pseudo-code-span-"><span style="text-decoration: underline 3px green;text-underline-offset:10px;margin:0;">Pseudo Code</span></h1>
+<ul>
+<li>Used to represent algorithms in a way that is <strong>independent</strong> of programming languages</li>
+<li>The normal concepts of loops (for/while), conditionals (if/else) and variables are used.</li>
+<li><strong>Mathematical notations</strong> such as sets and equations are also often used.</li>
+<li>Functions are <strong>not</strong> used, <strong>unless</strong> we define them first</li>
+</ul>
+<h1 id="pseudo-code-example">Pseudo Code Example</h1>
+<p><code>ArrayMax Algorithm Pseudocode
+input: A 1-D numerical array Arr of size n &gt; 0
+let CurrentMax = a0
+for i = 1 to n-1
+    if ai &gt; CurrentMax Then CurrentMax = ai
+End For
+Output: CurrentMax, the largest value in Arr</code></p>
+<h1 id="counting-primitive-operations">Counting Primitive Operations</h1>
+<p>The individual operations of an algorithm can be counted by <strong>inspecting</strong> the pseudo code.
+For example, the line <code>let CurrentMax = a0</code> will contain <strong>two</strong> operations as we are <strong>referencing</strong> <code>CurrentMax</code> <strong>(1)</strong>, and <strong>assigning</strong> it to <code>a0</code> <strong>(2)</strong>.</p>
+<p>It is important to count <strong>loops</strong> correctly as operations inside a loop will repeat.
+For example if the for loop has an operation count of <strong>n-1</strong> and repeats <strong>7 times</strong>, the inside code will have an operation count of <strong>7(n-1)</strong>.</p>
+<p><strong>Indentation</strong> helps to ensure nested loops can be easily seen, so that the inside operations can be counted properly.</p>
+<h1 id="-span-style-text-decoration-underline-3px-green-text-underline-offset-10px-margin-0-mathematical-foundations-span-"><span style="text-decoration: underline 3px green;text-underline-offset:10px;margin:0;">Mathematical Foundations</span></h1>
+<p><strong>Variables</strong> are symbols used to represent a mathematical construct, such as <strong>sets</strong> or <strong>matrices</strong>. They are treated the same mathematically as they are in programming.</p>
+<h1 id="sets">Sets</h1>
+<p>A <strong>set</strong> is a collection of objects, known as <strong>elements</strong>.
+Sets are unordered.
+Sets can be finite or infinite.</p>
+<p>Some well known sets include</p>
+<ul>
+<li><strong>ℝ</strong> - The set of Real Numbers </li>
+<li><strong>ℤ</strong> - The set of Integers</li>
+</ul>
+<p>We can specify whether an <strong>element</strong> is a member of a set using the <strong>∈</strong> and <strong>∉</strong> symbols.</p>
+<blockquote>
+<p>If we say a ∈ <strong>B</strong>, this means a is an element of the set B
+If we say x ∉ <strong>Y</strong>, this means that x is not an element of the set Y.</p>
+</blockquote>
+<p>We can reference the <strong>cardinality</strong> of a set by wrapping its name in | | <strong>characters</strong>.</p>
+<blockquote>
+<p>If set <strong>A</strong> = <strong>{ 1 , 2 , 3 , 4 , 7 , 9}</strong>
+then <strong>|A|</strong> = <strong>6</strong>
+because there are six elements in set A.</p>
+</blockquote>
+<p>Multiple sets can be referenced at a time via the use of <strong>intersections</strong> and <strong>unions</strong>.
+<strong>Intersection</strong> (<strong>∩</strong>) shows elements that are in <strong>both sets</strong>.</p>
+<blockquote>
+<p>If Set <strong>A = { 1 , 2 , 4 , 6 , 7 }</strong>
+If Set <strong>B = { 2 , 3 , 5 , 8 , 9 }</strong></p>
+<p>then <strong>A ∩ B = {2}</strong> <code>can be thought of as in A and B</code>
+and <strong>A ∪ B = {1,2,3,4,5,7,8,9}</strong> <code>can be thought of as in A or B</code></p>
+</blockquote>
+<p><strong>Subsets</strong> and <strong>Supersets</strong> can be defined as well.</p>
+<blockquote>
+<p>If A is a set and B is a set,
+and every element of B is also in A,
+then we can say <strong>B</strong> ⊆ <strong>A</strong>,
+meaning B is a <strong>subset</strong> of A</p>
+<p>By applying the reverse logic, this also means that A is a <strong>superset</strong> of B.</p>
+</blockquote>
+<h1 id="equations">Equations</h1>
+<p>Equations use mathematical operations to link variables and numbers to each other.
+Equations often have to be simplified.</p>
+<blockquote>
+<p>(<em>n</em>-1)(<em>n</em>-2)(<em>n</em>-3) can be simplified to
+= (<em>n</em><sup>2</sup> - 2<em>n</em> - <em>n</em> + 2)(<em>n</em> - 3) <code>expand first bracket</code>
+= (<em>n</em><sup>2</sup> - 3<em>n</em> + 2)( <em>n</em> - 3) <code>add up the &#39;n&#39; terms</code>
+= n<sup>3</sup> - 3n<sup>2</sup> - 3n<sup>2</sup> + 9n + 2n - 6 <code>expand again</code>
+= n<sup>3</sup> - 6n<sup>2</sup> + 11n - 6 <code>add up the terms again</code></p>
+</blockquote>
+<h1 id="functions">Functions</h1>
+<p>Functions are relations that uniquely associate members of one set with members of another set.</p>
+<p><strong>The exponential function</strong>
+<em>e</em> is an irrational (infinite decimal places) mathematical constant which is around <strong>2.718</strong>.
+<em>e</em><sup><em>x</em></sup> is a special function often used to represent continuous growth.</p>
+<blockquote>
+<p><em>e</em><sup><em>x</em></sup> can also be notated as <em>exp(x)</em>.</p>
+</blockquote>
+<h1 id="subscripts">Subscripts</h1>
+<p><strong>Subscripts</strong> can be used to <strong>index</strong> lists.</p>
+<blockquote>
+<p>If <strong>X = [ 4 , 7 , 8 , 5 , 8 , 3 ]</strong></p>
+<p>we can signify that
+X<sub>1</sub> = 4
+X<sub>4</sub> = 5, etc.
+X<sub>i</sub> = [<em>whatever number we&#39;re at in a loop</em>]</p>
+</blockquote>
+<h1 id="summation">Summation</h1>
+<p>We can use specific notation to reference the <strong>sum</strong> of all elements in a set.</p>
+<blockquote>
+<p>If X = <strong>[1 , 3 , 5 , 7 , 9]</strong>
+then
+<img src="./Pasted image 20230515182651.png"> 
+is the same as saying</p>
+<p><strong><em>s</em> = x<sub>1</sub> + x<sub>2</sub> + x<sub>3</sub> + (...) +  x<sub>n</sub></strong> </p>
+<p>which in this case would be <strong>1+3+5+7+9 = 25</strong></p>
+<p>   To sum the squares, we would replace <strong>X<sub>i</sub></strong> above with <strong>X<sup>2</sup><sub>i</sub></strong></p>
+</blockquote>
+<h1 id="products">Products</h1>
+<p>Similar notation can be used to reference the <strong>product</strong> of all elements in a set.</p>
+<blockquote>
+<p>If X = <strong>[1 , 3 , 5 , 7 , 9]</strong>
+then
+<img src="./Pasted image 20230515183923.png">
+is the same as saying</p>
+<p><strong><em>s</em> = x<sup>2</sup><sub>1</sub> + x<sup>2</sup><sub>2</sub> + x<sup>2</sup><sub>3</sub> + (...) +  x<sup>2</sup><sub>n</sub></strong> </p>
+<p>which in this case would be <strong>1<sup>2</sup> + 3<sup>2</sup> + 5<sup>2</sup> + 7<sup>2</sup> + 9<sup>2</sup></strong> = <strong>165</strong></p>
+</blockquote>
+<h1 id="factorials">Factorials</h1>
+<p>To find the <strong>factorial</strong> of a number we can multiple the number by all the integers before it up to 1.</p>
+<blockquote>
+<p>If <strong>n = 5</strong>
+then <strong>n! = 5! = 5 x 4 x 3 x 2 x 1 = 120</strong></p>
+</blockquote>
+<p>The factorial of a number is also the number of possible arrangements of those numbers. For example, a set of 5 items can be <strong>arranged</strong> 120 different ways.</p>
+<h1 id="permutations">Permutations</h1>
+<p>Permutations refer to the number of ways that <em>x</em> number of <strong>ordered elements</strong> can be arranged within a set.</p>
+<p>Permutations are defined as:
+$$ P_r^n = \frac{n!}{(n-r)!}  $$</p>
+<blockquote>
+<p>If we want to know how many times we can arrange <strong>2</strong> items within a set of <strong>4</strong> elements, where the combinations are ordered, e.g. (1,2) or (3,4) we can use the formula: $$ P^4_2 = 4! / (4-2)! = 24 / 2 = 12$$</p>
+</blockquote>
+<p>Permutations should be used when order is <strong>important</strong>, such as when finding the combination for a lock e.g. 123 is not the same as 321.</p>
+<h1 id="combinations">Combinations</h1>
+<p>Combinations refer to the number of ways that <em>x</em> number of <strong>unordered elements</strong> can be arranged within a set.</p>
+<p>Combinations are defined as:
+$$ C_r^n = (_r^n) = \frac{n!}{(r!)(n-r)!}$$</p>
+<blockquote>
+<p>If we want to know how many times we can arrange <strong>2</strong> items within a set of <strong>4</strong> elements, where the order doesn&#39;t matter, we can use the formula:$$ P^4_2 = 4! /(2!) (4-2)! = 24 / (2*2) = 24/4 = 6$$</p>
+</blockquote>
+<p>Combinations should be used when order is <strong>not important</strong> such as when arranging a fruit salad e.g. bananas and apples don&#39;t care what order they&#39;re in.</p>
+<h1 id="logarithms">Logarithms</h1>
+<p><strong>Logarithms</strong> can be thought of as the reverse of exponents (powers).</p>
+<blockquote>
+<p>10<sup>2</sup> = 100
+therefore <em>log</em><sub>10</sub>(100) = 2</p>
+</blockquote>
+<p>Logarithms can use different base units,
+e.g. <em>log</em><sub>3</sub>, <em>log</em><sub>5</sub>, <em>log</em><sub>x</sub></p>
+<p><em>log</em><sub>e</sub>(x) is known as the <strong>natural log*</strong>.
+It has a special notation, <strong>ln(x)</strong>.</p>
+<p>There are additional simplifications when natural logs are used.
+$$ ln(x^y) = y \cdot ln(x)$$</p>
+<h1 id="-span-style-text-decoration-underline-3px-green-text-underline-offset-10px-margin-0-sorting-algorithms-span-"><span style="text-decoration: underline 3px green;text-underline-offset:10px;margin:0;">Sorting Algorithms</span></h1>
+<p><strong>Sorting</strong> takes an unordered collection and sorts it according to some defined logic such as alphabetically or in descending order.</p>
+<h1 id="selection-sort">Selection Sort</h1>
+<p><strong>Selection Sort</strong> works by repeatedly finding the smallest element in a list and moving it to the front, then adjusting the start point of the search to ensure it does not check the softed elements again.</p>
+<p>let x = [5,3,4,2,1]</p>
+<blockquote>
+<p><code>starting at first element, search through the list</code>
+<code>1 is the smallest so we move 1 to the front</code></p>
+</blockquote>
+<p>x now equals [1,5,3,4,2]</p>
+<blockquote>
+<p><code>We repeat this process again starting at the second element (so that we don&#39;t count 1 again)</code></p>
+<p><code>2 is the smallest element out of the selection [5,3,4,2]</code>
+`etc.</p>
+</blockquote>
+<p><code>After enough iterations:</code>
+x sorted is [1,2,3,4,5]</p>
+<p><strong>Counting Primitive Operations</strong>
+The <strong>search</strong> for the smallest element requires us to search <strong>n</strong> elements the first time (n operations), then (n-1) elements the second time (n-1 operations), up until there are only 2 elements left to search (last iteration).</p>
+<p>The <strong>swap</strong> requires 2 operations to each time we search the set.</p>
+<p>This gives us an operation count of...
+$$(n + 2) + [(n-1) + 2] +[(n-2) +2] + . .. +(1+ 2) + 2$$
+...which simplifies to...
+$$\frac{n^2}{2} + \frac{5n}{2} + 2$$
+We can <strong>ignore</strong> the 5n/2 + 2 as it is insignificant in comparison to the n<sup>2</sup>.
+We can also <strong>ignore</strong> the 1/2 as it should take the <strong>simplest</strong> form of the expression.</p>
+<p>Therefore, this simplifies to n<sup>2</sup>, and the Big-O notation would be <strong>O(n<sup>2</sup>)</strong>.</p>
+<h1 id="bubble-sort">Bubble Sort</h1>
+<p>Bubble Sort is a simple sorting algorithm that works by repeatedly comparing adjacent elements</p>
+<h1 id="-span-style-text-decoration-underline-3px-green-text-underline-offset-10px-margin-0-search-algorithms-span-"><span style="text-decoration: underline 3px green;text-underline-offset:10px;margin:0;">Search Algorithms</span></h1>
+<p><strong>Search Algorithms</strong> attempt to find elements that match a specific pattern within a set.</p>
+<p>There are two types of search algorithms:</p>
+<ul>
+<li><p>Sequential (Linear) Search, which checks every element sequentially for the expected result. The list does not need to be sorted in this case.</p>
+</li>
+<li><p>Interval (e.g. Binary) Search, which uses a &#39;divide and conquer&#39; strategy with multiple start points to find the result. The list <strong>must be sorted</strong> for this search method to work.</p>
+</li>
+</ul>
+<h1 id="binary-search">Binary Search</h1>
+<p>Binary search works by finding the <strong>middle</strong> element of a list.</p>
+<blockquote>
+<p><code>// let&#39;s try and find value &#39;8&#39; in list X</code>
+X = [1,2,3,4,5,6,7,8,9]
+midpoint = <code>round_up(</code>|X| / 2<code>)</code>
+<code>// |x| = cardinality of X which is 9</code>
+<code>// rounding up because |x| is odd</code>
+X<sub>midpoint</sub> = 5</p>
+</blockquote>
+<p>If our result is greater than the middle result, then we will narrow the search space to only the second half of the list.</p>
+<p>If our result is less than the middle, we will narrow down to the first half of the list.</p>
+<blockquote>
+<p>8 &gt; 5 , so we will search the second half of the list.
+new_X = [5,6,7,8,9]
+midpoint = (...)</p>
+</blockquote>
+<p>This process will repeat until we find the result, or we determine that the result is not in the list.</p>
+<h1 id="searching-speed">Searching Speed</h1>
+<p>Linear Search is an <strong>O(n)</strong> algorithm whereas binary search is an
+<strong>O(log<sub>2</sub>n)</strong> algorithm.</p>
+<p>This makes binary search <strong>much faster</strong>. However, it can <strong>only</strong> work on <strong>sorted data</strong>.</p>
+<h1 id="t-n-vs-o-n-">T(n) vs O(n)</h1>
+<p><strong>T(n)</strong> refers to the <strong>primitive operations</strong> within an algorithm and is tells us how much <strong>time</strong> an algorithm takes to execute.</p>
+<p>Run times need to be determined <strong>outside</strong> of experimental studies as the accuracy will be limited by CPU speed, internet speed, etc.</p>
+<p>The asymptotic analysis of an algorithm determines its worst-case running time in Big-O notation.</p>
+<p>However, only the powers are important when determining O(n), the other numbers are insignificant.</p>
+<p><img src="./Pasted image 20230516031326.png"></p>
+<h1 id="-this-section-will-be-completed-later-as-i-want-to-focus-on-traversal-algorithms-"><em>This section will be completed later as I want to focus on traversal algorithms</em></h1>
+<h1 id="-span-style-text-decoration-underline-3px-green-text-underline-offset-10px-margin-0-graph-traversals-span-"><span style="text-decoration: underline 3px green;text-underline-offset:10px;margin:0;">Graph Traversals</span></h1>
+<p><strong>A graph</strong> is a collection of nodes connected to each other by edges.</p>
+<p><strong>Graph traversals</strong> involve finding the optimal routes from one node to another.</p>
+<blockquote>
+<p>The most basic graph is one that is <strong>unweighted</strong> and <strong>undirected</strong>.
+<img src="./Pasted image 20230516033921.png"></p>
+<p>Graphs can also be <strong>weighted</strong>, meaning the edges have a numerical value.
+<img src="./Pasted image 20230516034950.png"></p>
+<p>Graphs can also be <strong>directed</strong> meaning the edges have a directional vector associated with them.
+<img src="./Pasted image 20230516035420.png"></p>
+</blockquote>
+<p>A graph can also be <strong>complete</strong>, meaning all the edges form a <strong>closed loop</strong> and all nodes have an edge between them.</p>
+<p>When searching graphs, it is important to visit each node <strong>only once</strong>.</p>
+<h1 id="depth-first-search">Depth-First Search</h1>
+<p>In a Depth-First Search (DFS) traversal, we will travel as far down a node path until a &#39;dead end&#39; is reached.</p>
+<p>In an <strong>undirected</strong> graph this means that there are no adjacent nodes left.</p>
+<p>In a <strong>directed</strong> graph, this means there are no adjacent nodes connected via outgoing edges.</p>
+<p>When traversing, we take the <strong>smallest numerical value</strong> or <strong>next alphabetical value</strong> when determining which way to search, for convenience.</p>
+<p><strong>DFS on Undirected Graph</strong></p>
+<blockquote>
+<p>For the following <strong>undirected</strong> graph we will perform the following traversal:
+<img src="./Pasted image 20230516040842.png"></p>
+<p>We start at A. <code>[A]</code><br/>
+We can move to B. <code>[A,B]</code><br/>
+We can move to C. <code>[A,B,C]</code><br/>
+We can move to E. <code>[A,B,C,E]</code><br/>
+We can&#39;t go to D yet because it is not connected to C<br/>
+We can move to F. <code>[A,B,C,E,F]</code><br/>
+We can move to D. <code>[A,B,C,E,F,D]</code></p><br/>
+<p>We cannot move any further, so now we backtrack from D
+We backtrack to F.<br/>
+We cannot move any further, so we backtrack to E<br/>
+From E, the options are a traversal to C, a traversal to F or a traversal to G.</p><br/>
+<p>We have already visited C and F.<br/>
+Therefore the next unvisited route is to G. <code>[A,B,C,E,F,D,G]</code><br/>
+The final move takes us to H.</p><br/>
+<p><strong>Final Traversal [A,B,C,E,F,D,G,H]</strong></p><br/>
+</blockquote>
+<p><strong>DFS on directed graph</strong></p>
+<blockquote>
+<p>For the following <strong>directed</strong> graph we will perform the following traversal:
+<img src="./Pasted image 20230516042116.png"></p>
+<p>We start at A. <code>[A]</code><br/>
+We can move to B. <code>[A,B]</code><br/>
+We cannot move to F because the connection from B is inbound rather than outbound.<br/>
+We can move to E, so we will move to E. <code>[A,B,E]</code><br/>
+We can move to C or G. C is alphabetically first so we will move to C. <code>[A,B,E,C]</code>.<br/>
+There are no further traversals possible here to we will backtrack to E.<br/>
+We can now travel to G from E. <code>[A,B,E,C,G]</code><br/>
+We can now travel to H. <code>[A,B,E,C,G,H]</code><br/>
+We can now travel to D. <code>[A,B,E,C,G,H,D]</code><br/>
+We can now travel to F. <code>[A,B,E,C,G,H,D,F]</code><br/>
+There is a connection to B, however, B is <strong>already visited</strong>.<br/>
+Therefore this counts as a dead end.<br/>
+The final traversal is <code>[A,B,E,C,G,H,D,F]</code>.</p>
+</blockquote>
+
+
+
+
+
+</div></body>

@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cards</title>
+
+
+
+<style>
+	
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    font-family: "Jost", sans-serif;
+    color: white;
+
+    background: #111;
+}
+
+#board {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+
+#background {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.card {
+    position: absolute;
+    width: 11%;
+
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-drag: none;
+    -webkit-tap-highlight-color: transparent;
+
+    transition: transform 0.08s ease;
+
+    outline: none;
+}
+
+.card:focus,
+.card:focus-visible {
+    outline: none;
+    box-shadow: none;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card:active {
+    transform: scale(0.95);
+}
+
+/* Top Left */
+.card[data-index="0"] {
+    left: 33%;
+    top: 12%;
+}
+
+/* Top Right */
+.card[data-index="1"] {
+    left: 83%;
+    top: 12%;
+}
+
+/* Bottom Left */
+.card[data-index="2"] {
+    left: 33%;
+    top: 62%;
+}
+
+/* Bottom Right */
+.card[data-index="3"] {
+    left: 83%;
+    top: 62%;
+}
+
+.modal {
+    position: fixed;
+    inset: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(0,0,0,0.6);
+
+    z-index: 1000;
+}
+
+.hidden {
+    display: none;
+}
+
+.modal-content {
+    background: #ffffee;
+    color: black;
+    width: 100%;
+    max-width: 40%;
+    padding: 24px;
+    border-radius: 12px;
+}
+
+#reasonButtons {
+
+	display:flex;
+	flex-direction:row;
+	flex-wrap:wrap;
+	justify-content:flex-start;
+	gap:1rem;
+	
+}
+
+.reason-btn {
+    display: block;
+    margin: 8px 0;
+    padding: 12px;
+	border:none;
+	background: #ccee00;
+	border-radius:2rem;
+    font-size: 1.4rem;
+    cursor: pointer;
+	font-weight:bold;
+	padding:0.5rem 1rem;
+}
+
+.modal-buttons {
+    margin-top: 20px;
+    text-align: right;
+}
+
+	
+</style>
+</head>
+<body>
+<div id="board">
+
+    <img id="background" src="images/background.png">
+    <img class="card" data-index="0">
+    <img class="card" data-index="1">
+    <img class="card" data-index="2">
+    <img class="card" data-index="3">
+
+</div>
+
+<div id="reasonModal" class="modal hidden">
+    <div class="modal-content">
+        <h2>🟨 Issue Yellow Card</h2>
+
+        <p id="modalPerson"></p>
+
+<div id="reasonButtons">
+		
+		<button class="reason-btn" data-reason="Other">✏️ Other...</button>
+		
+		</div>
+
+		<div id="otherReasonContainer" class="hidden">
+			<input
+				id="otherReasonInput"
+				type="text"
+				placeholder="Enter a reason..."
+			>
+
+			<button id="confirmOtherReason">
+				Issue Yellow Card
+			</button>
+		</div>
+		
+
+        <div class="modal-buttons">
+            <button id="cancelModal">Cancel</button>
+        </div>
+    </div>
+</div>
+
+<div id="actionModal" class="modal hidden">
+    <div class="modal-content">
+        <h2>Yellow Card</h2>
+
+        <button id="escalateButton" class="red">
+            🟥 Escalate to Red
+        </button>
+
+        <button id="clearButton" class="green">
+            ✅ Resolve
+        </button>
+
+        <button id="cancelActionButton">
+            Cancel
+        </button>
+    </div>
+</div>
+
+<script>
+
+// ==============================
+// Constants
+// ==============================
+
+const NONE = 0;
+const YELLOW = 1;
+const RED = 2;
+
+const people = [
+    "Sophie",
+    "Saen",
+    "David",
+    "Peter"
+];
+
+const images = [
+    "images/blank.png",
+    "images/yellow.png",
+    "images/red.png"
+];
+
+const commonReasons = [
+    "🍔 Food in Communal Areas",
+    "📦 Boxes Left Out",
+    "🧀 Gross Fridge",
+    "🍽️ Dishes"
+];
+
+const personReasons = {
+    Saen: ["🚽 Bathroom"],
+    Sophie: ["🛋️ Living Room"],
+    David: ["🍴 Kitchen"],
+    Peter: ["🥾 Hallways"]
+};
+
+// ==============================
+// Elements
+// ==============================
+
+const cards = document.querySelectorAll(".card");
+
+const reasonModal = document.getElementById("reasonModal");
+const modalPerson = document.getElementById("modalPerson");
+const reasonButtonsContainer = document.getElementById("reasonButtons");
+
+const otherReasonContainer = document.getElementById("otherReasonContainer");
+const otherReasonInput = document.getElementById("otherReasonInput");
+const confirmOtherReason = document.getElementById("confirmOtherReason");
+
+const actionModal = document.getElementById("actionModal");
+
+// ==============================
+// State
+// ==============================
+
+const saved = localStorage.getItem("cards");
+
+const states = saved
+    ? JSON.parse(saved)
+    : [NONE, NONE, NONE, NONE];
+
+let pendingIndex = null;
+
+// ==============================
+// Initialisation
+// ==============================
+
+cards.forEach((card, index) => {
+
+    updateCard(index);
+
+    card.addEventListener("click", () => {
+        handleCardClick(index);
+    });
+
+});
+
+// ==============================
+// Click Handling
+// ==============================
+
+function handleCardClick(index) {
+
+    switch (states[index]) {
+
+        case NONE:
+            pendingIndex = index;
+            showReasonDialog(index);
+            break;
+
+        case YELLOW:
+            pendingIndex = index;
+            showActionDialog();
+            break;
+
+        case RED:
+            clearCard(index);
+            break;
+
+    }
+
+}
+
+// ==============================
+// Reason Modal
+// ==============================
+
+function showReasonDialog(index) {
+
+    modalPerson.textContent = people[index];
+
+    reasonButtonsContainer.innerHTML = "";
+
+    const reasons = [
+        ...commonReasons,
+        ...personReasons[people[index]],
+        "Other"
+    ];
+
+    reasons.forEach(reason => {
+
+        const button = document.createElement("button");
+
+        button.className = "reason-btn";
+        button.dataset.reason = reason;
+
+        button.textContent =
+            reason === "Other"
+                ? "✏️ Other..."
+                : reason;
+
+        button.addEventListener("click", handleReasonClick);
+
+        reasonButtonsContainer.appendChild(button);
+
+    });
+
+    otherReasonContainer.classList.add("hidden");
+    otherReasonInput.value = "";
+
+    reasonModal.classList.remove("hidden");
+
+}
+
+function handleReasonClick(event) {
+
+    const reason = event.target.dataset.reason;
+
+    if (reason === "Other") {
+
+        otherReasonContainer.classList.remove("hidden");
+        otherReasonInput.focus();
+        return;
+
+    }
+
+    issueYellowCard(pendingIndex, reason);
+    closeReasonDialog();
+
+}
+
+function closeReasonDialog() {
+
+    reasonModal.classList.add("hidden");
+
+    otherReasonContainer.classList.add("hidden");
+    otherReasonInput.value = "";
+
+    pendingIndex = null;
+
+}
+
+document.getElementById("cancelModal").onclick = closeReasonDialog;
+
+confirmOtherReason.onclick = () => {
+
+    const reason = otherReasonInput.value.trim();
+
+    if (!reason) return;
+
+    issueYellowCard(pendingIndex, reason);
+
+    closeReasonDialog();
+
+};
+
+// ==============================
+// Action Modal
+// ==============================
+
+function showActionDialog() {
+
+    actionModal.classList.remove("hidden");
+
+}
+
+function closeActionDialog() {
+
+    actionModal.classList.add("hidden");
+
+    pendingIndex = null;
+
+}
+
+document.getElementById("escalateButton").onclick = () => {
+
+    issueRedCard(pendingIndex);
+
+    closeActionDialog();
+
+};
+
+document.getElementById("clearButton").onclick = () => {
+
+    clearCard(pendingIndex);
+
+    closeActionDialog();
+
+};
+
+document.getElementById("cancelActionButton").onclick = closeActionDialog;
+
+// ==============================
+// Card Actions
+// ==============================
+
+function issueYellowCard(index, reason) {
+
+    states[index] = YELLOW;
+
+    updateCard(index);
+
+    saveStates();
+
+    sendCardUpdate(index, "yellow", reason);
+
+}
+
+function issueRedCard(index) {
+
+    states[index] = RED;
+
+    updateCard(index);
+
+    saveStates();
+
+    sendCardUpdate(index, "red");
+
+}
+
+function clearCard(index) {
+
+    states[index] = NONE;
+
+    updateCard(index);
+
+    saveStates();
+
+    sendCardUpdate(index, "clear");
+
+}
+
+// ==============================
+// Display
+// ==============================
+
+function updateCard(index) {
+
+    cards[index].src = images[states[index]];
+
+}
+
+function saveStates() {
+
+    localStorage.setItem("cards", JSON.stringify(states));
+
+}
+
+// ==============================
+// API
+// ==============================
+
+function sendCardUpdate(index, action, reason = null) {
+
+    fetch("https://cards-api.saenkazak.workers.dev", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            action,
+            person: people[index],
+            reason
+        })
+    })
+    .then(r => r.json())
+    .then(console.log)
+    .catch(console.error);
+
+}
+
+</script>
+
+
+</body>
+</html>
