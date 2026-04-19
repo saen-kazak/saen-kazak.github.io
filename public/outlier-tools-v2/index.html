@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+<style>
+  
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
+
+:root {
+  --bg: #0b1220;
+  --card: #121a2b;
+  --card-hover: #16213a;
+  --accent: #4f9cff;
+  --accent-soft: rgba(79,156,255,0.15);
+  --text: #e6edf3;
+  --muted: #8b98b1;
+  --border: #1f2a44;
+  --success: #22c55e;
+}
+
+canvas {
+  cursor: pointer;
+}
+
+.section {
+  position: relative;
+  overflow: hidden;
+}
+
+.section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, transparent, var(--accent), transparent);
+  opacity: 0.4;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #020617;
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Source Sans 3", "Segoe UI", sans-serif;
+}
+
+/* Layout */
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 16px;
+}
+
+
+
+/* Sections */
+
+.section {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 18px;
+  margin-bottom: 18px;
+  backdrop-filter: blur(8px);
+}
+
+.section:hover {
+  background: var(--card-hover);
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.section-content {
+  margin-top: 12px;
+  transition: 0.25s ease;
+}
+
+.section.collapsed .section-content {
+  display: none;
+}
+
+.toggle {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.date-group div {
+  display: flex;
+  gap: 6px;
+}
+
+.tax-label {
+  padding: 10px 16px;
+  border-radius: 10px;
+  background: var(--accent-soft);
+  border: 1px solid var(--border);
+  font-weight: 600;
+}
+
+h2 {
+  margin: 0 0 12px;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+/* Upload */
+
+.upload-label {
+    display: inline-block;
+    border: 1px dashed var(--border);
+    /* border-radius: 3px; */
+    font-size: 1.3rem;
+    cursor: pointer;
+    transition: 0.2s ease;
+    background: rgba(255, 255, 255, 0.02);
+    width: -webkit-fill-available;
+    text-align: center;
+    padding: 1.3rem 0;
+    margin: 1rem 0;
+    font-weight: bold;
+    margin-top: 0;
+	border-radius: 0rem 0rem 1rem 1rem;
+}
+
+.upload-label:hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+/* Controls */
+
+.date-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.date-group label {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+select {
+  background: #0f172a;
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 8px;
+  margin-right: 4px;
+  padding: 8px;
+  font-size: 0.95rem;
+}
+
+h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+
+
+.button-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+/* Buttons */
+
+button {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 8px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.2s ease;
+  padding: 10px 16px;
+  font-size: 0.95rem;
+  border-radius: 12px;
+}
+
+button:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
+button.active {
+  background: var(--accent);
+  color: #000;
+}
+
+/* Totals */
+
+.totals-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+}
+
+.card {
+  background: linear-gradient(135deg, #0f172a, #020617);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 14px;
+}
+
+.card span {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+
+.card div {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+/* Charts */
+
+.chart-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+@media (max-width: 800px) {
+  .chart-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.chart-wrapper {
+  margin-top: 12px;
+  background: #020617;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 10px;
+}
+
+/* Breakdown cards */
+
+#projectBreakdown {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 14px;
+}
+
+#projectBreakdown > div {
+  padding: 16px;
+}
+
+#projectBreakdown > div {
+  background: #020617;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px;
+}
+
+#projectBreakdown strong {
+  display: block;
+  font-size: 1rem;
+  margin-bottom: 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+  .date-row {
+    flex-direction: column;
+  }
+
+  button {
+    flex: 1;
+  }
+
+  .section {
+    padding: 14px;
+  }
+}
+
+body {
+  line-height: 1.4;
+}
+
+h2 {
+  letter-spacing: 0.5px;
+}
+
+
+button.active {
+  background: linear-gradient(135deg, var(--accent), #60a5fa);
+  color: #000;
+  box-shadow: 0 0 12px rgba(79,156,255,0.5);
+}
+
+.card {
+  background: linear-gradient(145deg, #020617, #0f172a);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 14px;
+  transition: 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+}
+
+.card div {
+  font-size: 1.7rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+.chart-wrapper {
+  margin-top: 12px;
+  background: radial-gradient(circle at top, #020617, #000);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 12px;
+}
+
+#projectBreakdown > div {
+  background: linear-gradient(145deg, #020617, #0f172a);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px;
+  transition: 0.2s ease;
+}
+
+#projectBreakdown > div:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.word-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  margin:1rem 0;
+}
+
+.word-cloud span {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.05);
+  transition: 0.2s ease;
+  cursor: default;
+}
+
+.word-cloud span:hover {
+  transform: scale(1.1);
+}
+
+  </style>
+  
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Upload -->
+
+
+  <section style="border-radius: 1rem 1rem 0rem 0rem;text-align:center;background:none;margin-bottom:0;border-bottom:0;" class="section">
+  <h1 style="margin:0;padding:0;font-size:3rem;">Outlier Tools V2</h1>
+  <p style="margin:0.4rem;color:#999">Created by @saenkazak, based on an <a style="text-decoration:none;color:#fff" href="https://outlier.tools">original tool</a> by FlintSH.</p>
+  
+
+
+  </section>
+            <input type="file" id="fileInput" accept=".csv" style="display:none"/>
+<label for="fileInput" class="upload-label">
+  Upload CSV
+</label>
+
+  <ul style="margin:0.5rem;color:#aaa;font-size:1.1rem;line-height: 1.5;margin-bottom: 2rem;"><li>This tool will visualise your Outlier history, including total earnings, UK tax year breakdowns, best days and projects worked on.</li><li>Please ensure you are using a valid CSV from the <strong>new</strong> Outlier earnings page, otherwise the tool will not work.</li><li>To see lifetime earnings, you will need to select the appropriate date range on the Outlier page before exporting the CSV.</ul>
+
+  
+  <div id="appContent" style="display:none">
+  
+  
+  
+  <!-- Date Controls -->
+  
+  <section class="section">
+    <h2>Date Range</h2>
+
+    <div class="date-row">
+      <div class="date-group">
+        <label>Start</label>
+        <div>
+          <select id="startDay"></select>
+          <select id="startMonth"></select>
+          <select id="startYear"></select>
+        </div>
+      </div>
+
+      <div class="date-group">
+        <label>End</label>
+        <div>
+          <select id="endDay"></select>
+          <select id="endMonth"></select>
+          <select id="endYear"></select>
+        </div>
+      </div>
+    </div>
+
+    <div class="button-row">
+      <button id="btnWTD">This Week</button>
+      <button id="btnMTD">This Month</button>
+      <button id="btnYTD">This Year</button>
+      <button id="btnLifetime">Lifetime</button>
+    </div>
+
+    <div class="button-row">
+      <button id="btnPrevTaxYear"> < Previous </button>
+      <div id="taxYearLabel" class="tax-label"></div>
+      <button id="btnNextTaxYear"> Next ></button>
+    </div>
+  </section>
+
+  <!-- Totals -->
+  <section class="section">
+<h2 id="rangeLabel"></h2>
+    <div class="totals-grid">
+	
+	<div class="card">
+      <span style="font-size:0.8rem">Total Earned</span><div id="totalEarnings">
+	</div></div>
+		<div class="card"><span style="font-size:0.8rem">Total Hours</span>
+      <div id="totalHours"></div></div>
+	  	<div class="card"><span style="font-size:0.8rem">Average Hourly Rate</span>
+      <div id="avgHourly"></div></div>
+	  	<div class="card"><span style="font-size:0.8rem">Mission Rewards</span>
+      <div id="totalBonus"></div></div>
+    </div>
+  </section>
+
+<div id="wordCloud" class="word-cloud"></div>
+
+  <!-- Charts -->
+<section class="section collapsible">
+  <div class="section-header">
+    <h2>Project Distribution</h2>
+    <span class="toggle">▼</span>
+  </div>
+
+  <div class="section-content">
+
+<div class="chart-grid">
+  <div class="chart-wrapper">
+    <canvas id="projectChartEarnings"></canvas>
+  </div>
+  <div class="chart-wrapper">
+    <canvas id="projectChartHours"></canvas>
+  </div>
+</div>
+</div>
+  </section>
+
+  <section class="section collapsible">
+    <div class="section-header">
+    <h2>Daily Breakdown</h2>
+	<span class="toggle">▼</span>
+  </div>
+<div class="section-content">
+    <div class="button-row">
+      <button id="btnEarningsByDay">Earnings</button>
+      <button id="btnHoursByDay">Hours</button>
+    </div>
+
+    <div class="chart-wrapper">
+      <canvas id="dayChart"></canvas>
+    </div>
+	</div>
+  </section>
+
+  <section class="section">
+    <h2>Trends</h2>
+
+    <div class="button-row">
+      <button id="btnTrendEarnings">Earnings Trend</button>
+      <button id="btnTrendHours">Hours Trend</button>
+    </div>
+
+    <div class="chart-wrapper">
+      <canvas id="trendChart"></canvas>
+    </div>
+  </section>
+
+  <!-- Project Breakdown -->
+  <section class="section">
+    <h2>Project Breakdown</h2>
+
+    <div id="projectBreakdown" class="breakdown-grid"></div>
+	<p>To Do: Fix some minor bugs in the word cloud, add more tools and data</p>
+  </section>
+
+</div>
+</div>
+
+<footer><div class="container" style="color: #999"><p>Outlier Tools V2 is an independent, unofficial tool and is not affiliated with, endorsed by, or connected to Scale AI or Outlier in any way. This tool is created by the community, for the community.</p></div></footer>
+
+<script>
+let parsedData = [];
+let earliestDate = null;
+let taxYearOffset = 0;
+let projectChart = null;
+let dayChart = null;
+let rangeMode = "custom";
+let trendMode = "earnings";
+
+const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+
+function startOfWeek(d) {
+  const date = new Date(d);
+  const day = date.getDay();
+  const diff = (day === 0 ? -6 : 1 - day); // Monday start
+  date.setDate(date.getDate() + diff);
+  return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+}
+
+function animateValue(el, value, suffix="") {
+  el.style.opacity = 0;
+  setTimeout(() => {
+    el.textContent = value + suffix;
+    el.style.opacity = 1;
+  }, 100);
+}
+
+function calculateBonus(data) {
+  return data
+    .filter(r => r._type === "Bonus")
+    .reduce((sum, r) => sum + r.Payable, 0);
+}
+
+function normalizeData(rows) {
+  const result = [];
+
+  for (let i = 0; i < rows.length; i++) {
+    let row = rows[i];
+
+    const type = (row.Type || "").trim();
+
+    const project = row["Project Name"] || "Unknown";
+
+const earnings = parseFloat(
+  (row.Payable ?? '').toString().replace(/[^0-9.-]/g, '')
+) || 0;
+
+const duration = parseDuration(row.Duration);
+
+    const date = parseCSVDate(row["Work Date"]);
+
+    // --- Merge Exceeded Time + Task ---
+    if (type === "Exceeded Time") {
+      const next = rows[i + 1];
+
+      if (next && (next.Type || "").trim() === "Task") {
+const nextEarnings = parseFloat(
+  (next.Payable ?? '').toString().replace(/[^0-9.-]/g, '')
+) || 0;
+
+const mergedEarnings = earnings + nextEarnings;
+
+const nextDuration = parseDuration(next.Duration);
+const mergedDuration = duration + nextDuration;
+
+        result.push({
+          "Project Name": project,
+          Payable: mergedEarnings,
+          Duration: mergedDuration,
+          _date: date,
+          _type: "Task"
+        });
+
+        i++; // skip next row
+        continue;
+      }
+    }
+
+    // --- Hubstaff Hours → treat as Task ---
+    if (type === "Hubstaff Hours") {
+      result.push({
+        "Project Name": project,
+        Payable: earnings,
+        Duration: duration,
+        _date: date,
+        _type: "Task"
+      });
+      continue;
+    }
+
+    // --- Mission Reward → Bonus ---
+    if (type === "Mission Reward") {
+      result.push({
+        "Project Name": "(missions)",
+        Payable: earnings,
+        Duration: 0,
+        _date: date,
+        _type: "Bonus"
+      });
+      continue;
+    }
+
+    // --- Default Task ---
+    result.push({
+      "Project Name": project,
+      Payable: earnings,
+      Duration: duration,
+      _date: date,
+      _type: "Task"
+    });
+  }
+
+  return result;
+}
+
+function buildProjectBreakdown(data) {
+  const result = {};
+
+  data.forEach(row => {
+    const project = row["Project Name"] || "Unknown";
+
+    if (!result[project]) {
+      result[project] = {
+        earnings: 0,
+        seconds: 0,
+        entries: 0
+      };
+    }
+
+    const earnings = row.Payable || 0;
+
+    const duration = parseDuration(row.Duration);
+
+    result[project].earnings += earnings;
+    result[project].seconds += duration;
+    result[project].entries += 1;
+  });
+
+  return Object.entries(result).map(([project, stats]) => {
+    const hours = stats.seconds / 3600;
+
+    return {
+      project,
+      earnings: stats.earnings,
+      hours,
+      entries: stats.entries,
+      avgTimePerEntry: stats.entries
+        ? hours / stats.entries
+        : 0
+    };
+  });
+}
+
+function renderProjectBreakdown(rows) {
+  const container = document.getElementById('projectBreakdown');
+  container.innerHTML = '';
+
+  if (!rows.length) {
+    container.textContent = "No data";
+    return;
+  }
+
+  const formatCurrency = v =>
+    new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD'
+    }).format(v);
+
+rows.forEach(r => {
+  const card = document.createElement('div');
+
+  const title = document.createElement('strong');
+  title.textContent = r.project;
+
+  const earnings = document.createElement('div');
+  earnings.textContent = `${formatCurrency(r.earnings)}`;
+
+  const hours = document.createElement('div');
+  hours.textContent = `Hours: ${r.hours.toFixed(1)}h`;
+
+  const entries = document.createElement('div');
+  entries.textContent = `Entries: ${r.entries}`;
+
+  const avg = document.createElement('div');
+  avg.textContent = `Avg Time/Entry: ${r.avgTimePerEntry.toFixed(2)}h`;
+
+  card.append(title, earnings, hours, entries, avg);
+  container.appendChild(card);
+});
+}
+
+function buildTrendData(mode) {
+  const grouped = groupByDay(getFilteredData());
+
+  const rows = Object.entries(grouped).map(([date, stats]) => ({
+    date,
+    earnings: stats.earnings,
+    hours: stats.seconds / 3600
+  }));
+
+  // chronological order (important for line charts)
+  rows.sort((a, b) => new Date(a.date) - new Date(b.date));
+
+  return rows;
+}
+
+let trendChart = null;
+
+function renderTrendChart(rows, mode) {
+  const validRows = rows.filter(r => r.date);
+
+const labels = validRows.map(r => formatPrettyDate(r.date));
+const values = validRows.map(r => mode==="earnings" ? r.earnings : r.hours);
+
+  if (trendChart) trendChart.destroy();
+
+  trendChart = new Chart(document.getElementById('trendChart'), {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [{
+        label: mode === "earnings" ? "Earnings" : "Hours",
+        data: values,
+        tension: 0.3 // smooth line so it looks fancy
+      }]
+    },
+    options: {
+      responsive: true,
+  plugins: {
+    legend: {
+      labels: {
+        color: "#e6edf3"
+      }
+    }
+  },
+  scales: {
+    x: { ticks: { color: "#94a3b8" } },
+    y: { ticks: { color: "#94a3b8" } }
+  }
+}
+  });
+}
+
+function parseCSVDate(str){
+  if(!str) return null;
+  const m = str.trim().match(/^([A-Za-z]{3})\s+(\d{1,2}),\s*(\d{4})$/);
+  if(!m) return null;
+  return new Date(+m[3], MONTHS.indexOf(m[1]), +m[2]);
+}
+
+function parseDuration(str){
+  if (!str) return 0;
+
+  // already parsed → just return it
+  if (typeof str === "number") return str;
+
+  // ensure string
+  str = String(str);
+
+  let h = 0, m = 0, s = 0;
+
+  const hMatch = str.match(/(\d+)h/);
+  const mMatch = str.match(/(\d+)m/);
+  const sMatch = str.match(/(\d+)s/);
+
+  if (hMatch) h = +hMatch[1];
+  if (mMatch) m = +mMatch[1];
+  if (sMatch) s = +sMatch[1];
+
+  return h*3600 + m*60 + s;
+}
+
+function getDate(p){
+  return new Date(
+    +document.getElementById(p+'Year').value,
+    MONTHS.indexOf(document.getElementById(p+'Month').value),
+    +document.getElementById(p+'Day').value
+  );
+}
+
+function setDate(p,d){
+  document.getElementById(p+'Day').value=d.getDate();
+  document.getElementById(p+'Month').value=MONTHS[d.getMonth()];
+  document.getElementById(p+'Year').value=d.getFullYear();
+}
+
+function populateDropdowns(){
+  const y=new Date().getFullYear();
+  const years=Array.from({length:y-2021+1},(_,i)=>2021+i);
+  const days=Array.from({length:31},(_,i)=>i+1);
+
+  function fill(id,vals){
+    const el=document.getElementById(id);
+    el.innerHTML='';
+    vals.forEach(v=>{
+      const o=document.createElement('option');
+      o.value=o.textContent=v;
+      el.appendChild(o);
+    });
+  }
+
+  fill('startDay',days); fill('endDay',days);
+  fill('startMonth',MONTHS); fill('endMonth',MONTHS);
+  fill('startYear',years); fill('endYear',years);
+}
+
+function calculateTotal(data){
+  return data.reduce((s,r)=>s+(r.Payable||0),0);
+}
+
+function calculateHours(data){
+  return data.reduce((sum, r) => {
+    const val = typeof r.Duration === "number" ? r.Duration : 0;
+    return sum + val;
+  }, 0) / 3600;
+}
+
+function updateTotal(){
+
+
+  const data=getFilteredData();
+  const earnings=calculateTotal(data);
+  const hours=calculateHours(data);
+  const rate=hours?earnings/hours:0;
+  const bonus = calculateBonus(data);
+  
+  animateValue(document.getElementById('totalEarnings'), `$${earnings.toFixed(2)}`);
+  animateValue(document.getElementById('totalHours'), `${hours.toFixed(1)}h`);
+  animateValue(document.getElementById('avgHourly'), `$${rate.toFixed(2)}/h`);
+  animateValue(document.getElementById('totalBonus'), `$${bonus.toFixed(2)}`);
+  
+  renderWordCloud(getFilteredData());
+
+// charts
+renderProjectCharts();
+const dayRows = buildDayRows(dayMode);
+renderDayChart(dayRows, dayMode);
+
+const trendRows = buildTrendData(trendMode);
+renderTrendChart(trendRows, trendMode);
+
+// breakdown
+const breakdown = buildProjectBreakdown(data);
+breakdown.sort((a, b) => b.earnings - a.earnings);
+renderProjectBreakdown(breakdown);
+
+
+}
+
+function getFilteredData(){
+  const s=getDate('start');
+  const e=getDate('end');
+  return parsedData.filter(r=>r._date && r._date>=s && r._date<=e);
+}
+
+function groupByProject(data){
+  const res={};
+  data.forEach(r=>{
+    const p=r["Project Name"]||"Unknown";
+    if(!res[p]) res[p]={earnings:0,seconds:0};
+    res[p].earnings+=r.Payable||0;
+    res[p].seconds+=r.Duration;
+  });
+  return res;
+}
+
+let projectChartEarnings, projectChartHours;
+
+function renderProjectCharts() {
+  const data = groupByProject(getFilteredData());
+  const labels = Object.keys(data);
+
+  const earnings = labels.map(k => data[k].earnings);
+  const hours = labels.map(k => data[k].seconds / 3600);
+
+  if (projectChartEarnings) projectChartEarnings.destroy();
+  if (projectChartHours) projectChartHours.destroy();
+
+  projectChartEarnings = new Chart(
+    document.getElementById('projectChartEarnings'),
+    {options: {plugins: {legend: {display: false}} }, type: 'pie', data: { labels, datasets: [{ data: earnings, borderWidth: 0, hoverOffset: 6 }] } }
+  );
+
+  projectChartHours = new Chart(
+    document.getElementById('projectChartHours'),
+    {options: {plugins: {legend: {display: false}} }, type: 'pie', data: { labels, datasets: [{ data: hours, borderWidth: 0, hoverOffset: 6 }] } }
+  );
+}
+
+function groupByDay(data){
+  const res={};
+  data.forEach(r=>{
+    if(!r._date) return;
+    const k=r._date.toISOString().slice(0,10);
+    if(!res[k]) res[k]={earnings:0,seconds:0};
+    res[k].earnings+=r.Payable||0;
+    res[k].seconds+=r.Duration;
+  });
+  return res;
+}
+
+function formatPrettyDate(d){
+  return new Date(d).toLocaleDateString('en-GB',{
+    weekday:'long',day:'numeric',month:'long',year:'numeric'
+  });
+}
+
+function buildDayRows(mode){
+  const rows=Object.entries(groupByDay(getFilteredData()))
+    .map(([d,v])=>({date:d,earnings:v.earnings,hours:v.seconds/3600}));
+
+  rows.sort((a,b)=>mode==="earnings"?b.earnings-a.earnings:b.hours-a.hours);
+  return rows;
+}
+
+function buildWordFrequency(data) {
+  const freq = {};
+
+  data.forEach(row => {
+    let name = (row["Project Name"] || "").toString();
+
+    // 🔥 normalize aggressively
+    name = name.trim();
+
+    if (!name || name === "-") {
+      name = "(unlisted)";
+    }
+
+    name = name.replace(/\s+/g, " "); // collapse double spaces
+
+    // optional: unify casing (recommended)
+    name = name.toLowerCase();
+
+    freq[name] = (freq[name] || 0) + 1;
+  });
+
+  return freq;
+}
+
+function renderWordCloud(data) {
+  const container = document.getElementById('wordCloud');
+  container.innerHTML = '';
+
+  const freq = buildWordFrequency(data);
+
+  const entries = Object.entries(freq);
+
+  if (!entries.length) {
+    container.textContent = "No data";
+    return;
+  }
+
+  const max = Math.max(...entries.map(e => e[1]));
+  const min = Math.min(...entries.map(e => e[1]));
+
+  entries.forEach(([word, count]) => {
+    const span = document.createElement('span');
+
+    // scale font size
+    const size = 24 + ((count - min) / (max - min || 1)) * 24;
+
+    span.textContent = word;
+    span.style.fontSize = size + "px";
+	span.style.transform = `rotate(${Math.random() * 10 - 5}deg)`;
+
+const intensity = (count - min) / (max - min || 1);
+// wide hue spectrum (blue → purple → pink → orange)
+const hue = 200 + intensity * 180;
+// vary brightness too
+const lightness = 45 + intensity * 20;
+// slight saturation boost for high values
+const saturation = 60 + intensity * 20;
+span.style.color = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+span.style.fontWeight = 400 + intensity * 300;
+entries.sort((a, b) => b[1] - a[1]);
+container.appendChild(span);
+  });
+}
+
+function renderDayChart(rows,mode){
+
+const validRows = rows.filter(r => r.date);
+
+const labels = validRows.map(r => formatPrettyDate(r.date));
+const values = validRows.map(r => mode==="earnings" ? r.earnings : r.hours);
+
+  if(dayChart) dayChart.destroy();
+
+  dayChart=new Chart(document.getElementById('dayChart'),{
+    type:'bar',
+    data:{labels,datasets: [{
+  label: mode === "earnings" ? "Earnings" : "Hours",
+  data: values
+}]},
+    options:{indexAxis:'y',
+  plugins: {
+    legend: {
+      labels: {
+        color: "#e6edf3"
+      }
+    }
+  },
+  scales: {
+    x: { ticks: { color: "#94a3b8" } },
+    y: { ticks: { color: "#94a3b8" } }
+  }
+}
+  });
+}
+
+function updateRangeLabel(start, end) {
+  const el = document.getElementById('rangeLabel');
+
+  const optionsMonth = { month: 'long', year: 'numeric' };
+
+  if (rangeMode === "month") {
+    el.textContent = start.toLocaleDateString('en-GB', optionsMonth);
+    return;
+  }
+
+  if (rangeMode === "year") {
+    el.textContent = start.getFullYear();
+    return;
+  }
+
+  if (rangeMode === "week") {
+    const week = Math.ceil(start.getDate() / 7);
+    el.textContent =
+      `${start.toLocaleDateString('en-GB', optionsMonth)} Week ${week}`;
+    return;
+  }
+
+  if (rangeMode === "tax") {
+    const taxStart = getTaxYearStart(end);
+    const nextYear = taxStart.getFullYear() + 1;
+
+    el.textContent = `Tax Year ${taxStart.getFullYear()}-${String(nextYear).slice(2)}`;
+    return;
+  }
+
+  if (rangeMode === "lifetime") {
+    el.textContent = "Lifetime";
+    return;
+  }
+
+  el.textContent = "Custom";
+}
+
+let dayMode = "hours";
+
+document.getElementById('btnEarningsByDay').onclick = () => {
+  dayMode = "earnings";
+  updateTotal();
+};
+
+document.getElementById('btnHoursByDay').onclick = () => {
+  dayMode = "hours";
+  updateTotal();
+};
+
+function applyRange(s,e){
+
+updateRangeLabel(s, e);
+  const now=new Date();
+  if(e>now) e=now;
+  setDate('start',s); setDate('end',e);
+  updateTaxLabel(e);
+  updateTotal();
+  
+}
+
+function getTaxYearStart(d){
+  const y=d.getFullYear();
+  const t=new Date(y,3,6);
+  return d>=t?t:new Date(y-1,3,6);
+}
+
+function getTaxYearRange(off){
+  const base=getTaxYearStart(new Date());
+  const s=new Date(base.getFullYear()+off,3,6);
+  const e=new Date(s.getFullYear()+1,3,5);
+  return {s,e};
+}
+
+document.getElementById('fileInput').onchange = e => {
+  Papa.parse(e.target.files[0], {
+    header: true,
+    skipEmptyLines: true,
+complete: r => {
+
+  parsedData = normalizeData(r.data);
+  document.getElementById('appContent').style.display = 'block';
+  earliestDate = new Date(
+    Math.min(...parsedData.map(r => r._date).filter(Boolean))
+  );
+
+  rangeMode = "lifetime";
+  applyRange(earliestDate, new Date());
+updateRangeLabel(earliestDate, new Date());
+}
+  });
+};
+
+
+
+document.getElementById('btnWTD').onclick = () => {
+  const now = new Date();
+  rangeMode = "week";
+  applyRange(startOfWeek(now), now);
+};
+
+document.getElementById('btnMTD').onclick = () => {
+  const now = new Date();
+  rangeMode = "month";
+  applyRange(new Date(now.getFullYear(), now.getMonth(), 1), now);
+};
+
+document.getElementById('btnYTD').onclick = () => {
+  const now = new Date();
+  rangeMode = "year";
+  applyRange(new Date(now.getFullYear(), 0, 1), now);
+};
+
+document.getElementById('btnLifetime').onclick = () => {
+  rangeMode = "lifetime";
+  applyRange(earliestDate, new Date());
+};
+
+document.getElementById('btnPrevTaxYear').onclick = () => {
+  taxYearOffset--;
+  rangeMode = "tax";
+  const r = getTaxYearRange(taxYearOffset);
+  applyRange(r.s, r.e);
+};
+
+document.getElementById('btnNextTaxYear').onclick = () => {
+  if (taxYearOffset < 0) {
+    taxYearOffset++;
+    rangeMode = "tax";
+    const r = getTaxYearRange(taxYearOffset);
+    applyRange(r.s, r.e);
+  }
+};
+
+document.getElementById('btnTrendEarnings').onclick = () => {
+  trendMode = "earnings";
+  updateTotal();
+};
+
+document.getElementById('btnTrendHours').onclick = () => {
+  trendMode = "hours";
+  updateTotal();
+};
+
+['startDay','startMonth','startYear',
+ 'endDay','endMonth','endYear']
+.forEach(id => {
+  const el = document.getElementById(id);
+  if (!el) return; // safety, because your codebase likes surprises
+
+  el.addEventListener('change', () => {
+    rangeMode = "custom";
+    updateTotal();
+  });
+});
+
+document.querySelectorAll('.section-header').forEach(header => {
+  header.addEventListener('click', () => {
+    const section = header.parentElement;
+    const toggle = header.querySelector('.toggle');
+
+    section.classList.toggle('collapsed');
+
+    toggle.textContent =
+      section.classList.contains('collapsed') ? '▶' : '▼';
+  });
+});
+
+function updateTaxLabel(date) {
+  const start = getTaxYearStart(date);
+  const endYear = start.getFullYear() + 1;
+
+  document.getElementById('taxYearLabel').textContent =
+    `${start.getFullYear()}-${String(endYear).slice(2)}`;
+}
+
+populateDropdowns();
+
+const today = new Date();
+setDate('start', today);
+setDate('end', today);
+
+document.querySelectorAll('.section').forEach((section, i) => {
+  if (i > 2) section.classList.add('collapsed');
+});
+
+
+</script>
+
+
+
+</body>
+</html>
