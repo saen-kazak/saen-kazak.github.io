@@ -1,0 +1,54 @@
+body{
+    margin:0;
+    background:#111;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    height:100vh;
+}
+
+#board{
+    position:relative;
+    width:1000px;
+}
+
+#background{
+    width:100%;
+    display:block;
+}
+
+.card{
+    position:absolute;
+
+    width:11%;
+
+    cursor:pointer;
+
+    user-select:none;
+}
+
+/* top left */
+.card[data-index="0"]{
+    left:33%;
+    top:12%;
+}
+
+/* top right */
+.card[data-index="1"]{
+    left:83%;
+    top:12%;
+}
+
+/* bottom left */
+.card[data-index="2"]{
+    left:33%;
+    top:62%;
+}
+
+/* bottom right */
+.card[data-index="3"]{
+    left:83%;
+    top:62%;
+}
