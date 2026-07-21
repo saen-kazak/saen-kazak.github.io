@@ -1,0 +1,716 @@
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&display=swap');
+  :root {
+    --bg1: #12081f;
+    --bg2: #22103a;
+    --panel: rgba(255, 255, 255, 0.08);
+    --panel-border: rgba(255, 255, 255, 0.14);
+    --text: #f7f4ff;
+    --accent: #ffd84d;
+    --shadow: rgba(0, 0, 0, 0.35);
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    -webkit-tap-highlight-color: transparent;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Cabin', sans-serif;
+  color: var(--text);
+  flex-direction: column;
+  font-size: 4rem;
+  background: #ffffff;
+  transition: background-color 300ms ease;
+}
+
+body.spinning {
+  background: #1f2435;
+  transition: background-color 300ms ease;
+}
+
+h1, p {
+  transition: color 300ms ease, opacity 300ms ease;
+}
+
+body.spinning h1,
+body.spinning p {
+  color: #f3f3f3 !important;
+}
+
+body.spinning .canvas-box {
+    filter: drop-shadow(0 18px 36px rgba(150, 90, 90, 0.35));
+}
+  
+#final-result {
+  background: #ef3340;
+  margin: auto;
+  z-index: 5;
+  align-items: center;
+  display: flex;
+  position: absolute;
+  inset: 50% auto auto 50%;
+  transform: translate(-50%, -50%) scale(0.55);
+  flex-direction: column;
+  color: white;
+  padding: 1rem 1.4rem;
+  min-width:20%;
+  border-radius: 1rem;
+box-shadow:
+  0 24px 60px rgba(0, 0, 0, 0.32),
+  0 0 0 4px rgba(255,255,255,0.16),
+  0 0 55px rgba(239, 51, 64, 0.42);
+  text-align: center;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  filter: blur(8px);
+  transition:
+    transform 50ms cubic-bezier(.2, .9, .2, 1.15),
+    opacity 50ms ease,
+    filter 50ms ease,
+    visibility 0s linear 50ms;
+}
+
+#final-result.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, -50%) scale(1);
+  filter: blur(0);
+  transition:
+    transform 50ms cubic-bezier(.18, 1.2, .22, 1),
+    opacity 50ms ease,
+    filter 50ms ease,
+    visibility 0s linear 0s;
+  animation: resultPulse 50ms ease-out 1;
+  will-change: transform, opacity, filter;
+}
+
+#final-result.hide {
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, -50%) scale(0.72);
+  filter: blur(10px);
+  transition:
+    transform 50ms cubic-bezier(.4, 0, .2, 1),
+    opacity 50ms ease,
+    filter 50ms ease,
+    visibility 0s linear 50ms;
+}
+
+#you-scored {
+  display: block;
+  font-size: min(2.2rem,5vw);
+  line-height: 1;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+
+#actual-result {
+  font-size: clamp(4rem, 10vw, 12rem);
+  line-height: 0.95;
+  font-weight: 700;
+  text-shadow:
+    0 4px 0 rgba(0,0,0,0.12),
+    0 10px 24px rgba(0,0,0,0.18);
+}
+
+@keyframes resultPulse {
+  0% {
+    transform: translate(-50%, -50%) scale(0.72);
+  }
+  55% {
+    transform: translate(-50%, -50%) scale(1.06);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+.wheel-wrap {
+  width: min(98vw, 1280px);
+  text-align: center;
+  position: relative;
+}
+
+.canvas-box {
+  position: relative;
+  display: inline-block;
+  filter: drop-shadow(0 18px 36px rgba(0,0,0,0.35));
+  transition: color 300ms ease, opacity 300ms ease;
+}
+
+canvas {
+  display: block;
+  width: min(92vw, 1180px);
+  height: min(92vw, 1180px);
+  cursor: pointer;
+  touch-action: none;
+  user-select: none;
+}
+
+.pointer {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 24px solid transparent;
+  border-right: 24px solid transparent;
+  border-top: 42px solid var(--accent);
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.35));
+  z-index: 2;
+}
+
+.pointer::after {
+  content: "";
+  position: absolute;
+  left: -10px;
+  top: -42px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #fff6cc;
+}
+ 
+  
+</style>
+<h1 id="hold-title" style="
+
+    font-family: 'Cabin';
+    font-weight: bold;
+    color: #ff2200;
+    font-size: min(10vw,4rem);
+    text-align: center;
+    max-width: 70%;
+
+
+">Hold to Spin!</h1>
+
+<div class="wheel-wrap">
+
+<div id="final-result" class="hide">
+  <span id="you-scored">You Scored</span>
+  <span id="actual-result"></span>
+</div>
+
+  <div class="canvas-box">
+    <div class="pointer"></div>
+    <canvas id="wheel" width="1180" height="1180"></canvas>
+    
+  </div>
+  
+</div>
+
+
+
+<p style="font-size:0.8rem">😎 Created by Saen 😎</p>
+
+<script>
+    
+    
+  
+let isHolding = false;
+let isDecelerating = false;
+let animationFrameId = null;
+let angularVelocity = 0;
+let holdSpinSpeed = 0.35; // radians per frame-ish feel, I might tune this
+let lastFrameTime = 0;
+  
+  const canvas = document.getElementById("wheel");
+  const ctx = canvas.getContext("2d");
+
+  const CONFIG = {
+    size: 1180,
+    center: 590,
+    radius: 548,
+    innerHubRadius: 78,
+    spinDuration: 4200,
+    minSpins: 7,
+    maxSpins: 10,
+    labelRadius: 405,
+    specialLabelRadius: 430,
+    starBandInner: 170,
+    starBandOuter: 300,
+    fontFamily: "'Cabin', cursive",
+     items: [
+      "Lucky Dip", "2", "Spin Again", "12", "6", "Spin Again", "5", "10", "Double Stars",
+      "4", "7", "8", "3",
+      "9", "Spin Again"
+    ],
+    /*
+     items: [
+      "Lucky Dip", "Double Stars", "Spin Again"
+    ],
+    */
+    
+    colors: [
+      "#1f2435",
+      "#ef3340",
+      "#ffffff",
+      "#1f2435",
+      "#ef3340",
+      "#ffffff",
+      "#1f2435",
+      "#ef3340",
+      "#ffffff",
+      "#1f2435",
+      "#ef3340",
+      "#ffffff",
+      "#1f2435",
+      "#ef3340",
+      "#ffffff"
+    ]
+    
+  };
+
+  const items = CONFIG.items;
+  const numSections = items.length;
+  const sliceAngle = (Math.PI * 2) / numSections;
+
+  let rotation = Math.PI;
+  let spinning = false;
+
+  const wheelCache = document.createElement("canvas");
+  wheelCache.width = CONFIG.size;
+  wheelCache.height = CONFIG.size;
+  const wheelCtx = wheelCache.getContext("2d");
+
+  function getTextColor(sliceColor) {
+    const color = sliceColor.toLowerCase();
+    if (color === "#ffffff") return "#ef3340";
+    return "#ffffff";
+  }
+
+  function fitFontSize(ctx, text, maxWidth, startSize, minSize, weight = 800) {
+    let size = startSize;
+
+    while (size > minSize) {
+      ctx.font = `${weight} ${size}px ${CONFIG.fontFamily}`;
+      if (ctx.measureText(text).width <= maxWidth) {
+        return size;
+      }
+      size -= 2;
+    }
+
+    return minSize;
+  }
+  
+
+
+  function drawStar(ctx, x, y, spikes, outerRadius, innerRadius, color, rotation = -Math.PI / 2) {
+    let rot = rotation;
+    const step = Math.PI / spikes;
+
+    ctx.beginPath();
+    ctx.moveTo(
+      x + Math.cos(rot) * outerRadius,
+      y + Math.sin(rot) * outerRadius
+    );
+
+    for (let i = 0; i < spikes; i++) {
+      rot += step;
+      ctx.lineTo(
+        x + Math.cos(rot) * innerRadius,
+        y + Math.sin(rot) * innerRadius
+      );
+
+      rot += step;
+      ctx.lineTo(
+        x + Math.cos(rot) * outerRadius,
+        y + Math.sin(rot) * outerRadius
+      );
+    }
+
+    ctx.closePath();
+    ctx.fillStyle = color;
+    ctx.fill();
+  }
+
+  function drawStarsInSlice(ctx, cx, cy, start, end, darkSlice, options = {}) {
+    const {
+      innerR = CONFIG.starBandInner,
+      outerR = CONFIG.starBandOuter,
+      count = 3,
+      anglePadding = 0.16,
+      sizes = [22, 14, 10]
+    } = options;
+
+    const starColor = darkSlice ? "#ffffff" : "#ef3340";
+    const smallStarColor = darkSlice ? "#ffffffcc" : "#ef3340cc";
+
+    const usableStart = start + anglePadding;
+    const usableEnd = end - anglePadding;
+    const angleSpan = usableEnd - usableStart;
+
+    const placements = [];
+
+    for (let i = 0; i < count; i++) {
+      const t = count === 1 ? 0.5 : i / (count - 1);
+      const angle = usableStart + angleSpan * (0.2 + t * 0.6);
+      const radius =
+        i % 2 === 0
+          ? innerR + (outerR - innerR) * 0.28
+          : innerR + (outerR - innerR) * 0.62;
+
+      placements.push({
+        angle,
+        radius,
+        size: sizes[Math.min(i, sizes.length - 1)]
+      });
+    }
+
+    placements.forEach((p, idx) => {
+      const x = cx + Math.cos(p.angle) * p.radius;
+      const y = cy + Math.sin(p.angle) * p.radius;
+      drawStar(
+        ctx,
+        x,
+        y,
+        5,
+        p.size,
+        p.size * 0.45,
+        idx === 0 ? starColor : smallStarColor
+      );
+    });
+  }
+
+  function buildWheelCache() {
+    const cx = CONFIG.center;
+    const cy = CONFIG.center;
+    const r = CONFIG.radius;
+
+    wheelCtx.clearRect(0, 0, CONFIG.size, CONFIG.size);
+
+    // soft outer glow
+    wheelCtx.beginPath();
+    wheelCtx.arc(cx, cy, r + 18, 0, Math.PI * 2);
+    wheelCtx.fillStyle = "rgba(255,255,255,0.05)";
+    wheelCtx.fill();
+
+    for (let i = 0; i < numSections; i++) {
+      const start = -Math.PI / 2 + i * sliceAngle;
+      const end = start + sliceAngle;
+      const mid = (start + end) / 2;
+      const text = items[i];
+      const isNumber = /^\d+$/.test(text);
+      const sliceColor = CONFIG.colors[i % CONFIG.colors.length];
+      const isDarkSlice = sliceColor.toLowerCase() === "#1f2435";
+
+      // slice fill
+      wheelCtx.beginPath();
+      wheelCtx.moveTo(cx, cy);
+      wheelCtx.arc(cx, cy, r, start, end);
+      wheelCtx.closePath();
+      wheelCtx.fillStyle = sliceColor;
+      wheelCtx.fill();
+
+      // slice border
+      wheelCtx.lineWidth = 6;
+      wheelCtx.strokeStyle = "rgba(255,255,255,0.18)";
+      wheelCtx.stroke();
+
+      // stars in inner band only
+      if (isNumber) {
+        drawStarsInSlice(wheelCtx, cx, cy, start, end, isDarkSlice, {
+          innerR: 185,
+          outerR: 315,
+          count: 3,
+          anglePadding: 0.14,
+          sizes: [20, 13, 10]
+        });
+      } else {
+        drawStarsInSlice(wheelCtx, cx, cy, start, end, isDarkSlice, {
+          innerR: 165,
+          outerR: 220,
+          count: 1,
+          anglePadding: 0.24,
+          sizes: [12]
+        });
+      }
+
+      // labels
+      wheelCtx.save();
+      wheelCtx.translate(cx, cy);
+      wheelCtx.rotate(mid);
+
+      if (isNumber) {
+        wheelCtx.translate(CONFIG.labelRadius, 0);
+        wheelCtx.rotate(Math.PI / 2);
+
+        wheelCtx.textAlign = "center";
+        wheelCtx.textBaseline = "middle";
+        wheelCtx.fillStyle = getTextColor(sliceColor);
+        wheelCtx.shadowColor = "rgba(0,0,0,0.18)";
+        wheelCtx.shadowBlur = 8;
+
+        const numSize = fitFontSize(wheelCtx, text, 180, 108, 62, 900);
+        wheelCtx.font = `800 ${numSize}px ${CONFIG.fontFamily}`;
+        wheelCtx.fillText(text, 0, 0);
+      } else {
+        wheelCtx.translate(CONFIG.specialLabelRadius, 0);
+        wheelCtx.rotate(Math.PI / 2);
+
+        wheelCtx.textAlign = "center";
+        wheelCtx.textBaseline = "middle";
+        wheelCtx.shadowColor = "rgba(0,0,0,0.15)";
+        wheelCtx.shadowBlur = 6;
+
+        let lines = [];
+        let styles = [];
+
+        if (text === "Double Stars") {
+          lines = ["DOUBLE", "STARS", "SPIN", "AGAIN"];
+          styles = [
+            { color: "#000000", start: 54, min: 24, y: -72, maxWidth: 170 },
+            { color: "#000000", start: 54, min: 24, y: -26, maxWidth: 170 },
+            { color: getTextColor(sliceColor), start: 50, min: 30, y: 24, maxWidth: 160 },
+            { color: getTextColor(sliceColor), start: 30, min: 20, y: 66, maxWidth: 120 }
+          ];
+        } else if (text === "Spin Again") {
+          lines = ["SPIN", "AGAIN"];
+          styles = [
+            { color: "#ef3340", start: 64, min: 40, y: -18, maxWidth: 170 },
+            { color: getTextColor(sliceColor), start: 34, min: 22, y: 34, maxWidth: 120 }
+          ];
+        } else if (text === "Lucky Dip") {
+          lines = ["LUCKY", "DIP"];
+          styles = [
+            { color: "#ef3340", start: 52, min: 34, y: -20, maxWidth: 165 },
+            { color: getTextColor(sliceColor), start: 52, min: 34, y: 34, maxWidth: 140 }
+          ];
+        } else {
+          lines = [text.toUpperCase()];
+          styles = [
+            { color: getTextColor(sliceColor), start: 48, min: 28, y: 0, maxWidth: 170 }
+          ];
+        }
+
+        lines.forEach((line, idx) => {
+          const style = styles[idx];
+          const fitted = fitFontSize(
+            wheelCtx,
+            line,
+            style.maxWidth,
+            style.start,
+            style.min,
+            800
+          );
+          wheelCtx.font = `800 ${fitted}px ${CONFIG.fontFamily}`;
+          wheelCtx.fillStyle = style.color;
+          wheelCtx.fillText(line, 0, style.y);
+        });
+      }
+
+      wheelCtx.restore();
+    }
+
+    // outer ring
+    wheelCtx.beginPath();
+    wheelCtx.arc(cx, cy, r, 0, Math.PI * 2);
+    wheelCtx.lineWidth = 14;
+    wheelCtx.strokeStyle = "rgba(255,255,255,0.35)";
+    wheelCtx.stroke();
+
+    // centre hub outer
+    wheelCtx.beginPath();
+    wheelCtx.arc(cx, cy, CONFIG.innerHubRadius, 0, Math.PI * 2);
+    wheelCtx.fillStyle = "#ef3340";
+    wheelCtx.fill();
+
+    // centre hub inner
+    wheelCtx.beginPath();
+    wheelCtx.arc(cx, cy, CONFIG.innerHubRadius - 20, 0, Math.PI * 2);
+    wheelCtx.fillStyle = "#ffffff";
+    wheelCtx.fill();
+  }
+
+  function drawWheel() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    ctx.save();
+    ctx.translate(CONFIG.center, CONFIG.center);
+    ctx.rotate(rotation);
+    ctx.translate(-CONFIG.center, -CONFIG.center);
+    ctx.drawImage(wheelCache, 0, 0);
+    ctx.restore();
+  }
+
+  function easeOutQuint(t) {
+    return 1 - Math.pow(1 - t, 5);
+  }
+
+function getSelectedIndex() {
+  const pointerAngle = 0;
+  const normalizedRotation = ((rotation % (Math.PI * 2)) + Math.PI * 2) % (Math.PI * 2);
+  const relativeAngle = ((pointerAngle - normalizedRotation) + Math.PI * 2) % (Math.PI * 2);
+  return Math.floor(relativeAngle / sliceAngle) % numSections;
+}
+
+function startHoldSpin() {
+    
+  if (spinning || isHolding || isDecelerating) return;
+
+  spinning = true;
+  isHolding = true;
+  isDecelerating = false;
+  angularVelocity = 0.08;
+  lastFrameTime = 0;
+
+  hideFinalResult();
+  setSpinningBackground();
+
+  if (animationFrameId) {
+    cancelAnimationFrame(animationFrameId);
+  }
+
+  animationFrameId = requestAnimationFrame(holdSpinFrame);
+}
+
+function holdSpinFrame(timestamp) {
+    document.getElementById("hold-title").textContent = "Release when ready!";
+  if (!lastFrameTime) lastFrameTime = timestamp;
+  const delta = (timestamp - lastFrameTime) / 16.6667; // normalize to ~60fps
+  lastFrameTime = timestamp;
+
+  const targetVelocity = holdSpinSpeed;
+
+angularVelocity += (targetVelocity - angularVelocity) * 0.12;
+rotation += angularVelocity * delta;
+  drawWheel();
+
+  if (isHolding) {
+      
+    animationFrameId = requestAnimationFrame(holdSpinFrame);
+  } else {
+    startDeceleration();
+  }
+}
+
+function startDeceleration() {
+  isDecelerating = true;
+  lastFrameTime = 0;
+
+  const startVelocity = angularVelocity;
+
+  // Tune these two values for feel
+  const decelDuration = 3000;   // ms
+  const extraSpinFactor = 1.35; // higher = more coasting after release
+
+  const startRotation = rotation;
+  const totalTravel = startVelocity * 60;
+
+  let decelStartTime = null;
+
+  function easeOutCubic(t) {
+    return 1 - Math.pow(1 - t, 3);
+  }
+
+  function decelFrame(timestamp) {
+    if (decelStartTime === null) {
+      decelStartTime = timestamp;
+    }
+
+    const elapsed = timestamp - decelStartTime;
+    const t = Math.min(elapsed / decelDuration, 1);
+    const eased = easeOutCubic(t);
+
+    rotation = startRotation + totalTravel * eased;
+
+    // derived velocity, useful if you want debug info
+    angularVelocity = startVelocity * (1 - eased);
+
+    drawWheel();
+
+    if (t < 1) {
+      animationFrameId = requestAnimationFrame(decelFrame);
+    } else {
+      angularVelocity = 0;
+      isDecelerating = false;
+      spinning = false;
+
+      rotation = ((rotation % (Math.PI * 2)) + Math.PI * 2) % (Math.PI * 2);
+      drawWheel();
+
+      const selectedIndex = getSelectedIndex();
+      console.log("Winner:", items[selectedIndex]);
+      showFinalResult(items[selectedIndex].toUpperCase());
+      resetBackgroundForResult();
+    }
+  }
+
+  animationFrameId = requestAnimationFrame(decelFrame);
+}
+
+function releaseHoldSpin() {
+  if (!isHolding) return;
+  isHolding = false;
+}
+  
+const finalResultEl = document.getElementById("final-result");
+const youScoredEl = document.getElementById("you-scored");
+const actualResultEl = document.getElementById("actual-result");
+
+function showFinalResult(value) {
+    
+  document.getElementById("hold-title").textContent = "Hold to Spin!";
+
+  finalResultEl.style.backgroundColor = "#ec323f";
+  youScoredEl.textContent = "You Scored"
+  finalResultEl.style.color = "#ffffff";
+  actualResultEl.textContent = value;
+  
+  if(value == "DOUBLE STARS") {
+      youScoredEl.textContent = "DOUBLE STARS";
+      actualResultEl.textContent = "SPIN AGAIN";
+      finalResultEl.style.backgroundColor = "#1f2435";
+  }
+  
+  if(value == "SPIN AGAIN") {
+      youScoredEl.textContent = "";
+      actualResultEl.textContent = "SPIN AGAIN";
+      finalResultEl.style.backgroundColor = "#ffffff";
+      finalResultEl.style.color = "#ec323f";
+  }
+  
+  if(value == "LUCKY DIP") {
+      youScoredEl.textContent = "";
+      actualResultEl.textContent = "LUCKY DIP";
+  }  
+
+  finalResultEl.classList.remove("hide");
+  // force reflow so repeated wins retrigger animation cleanly
+  void finalResultEl.offsetWidth;
+  finalResultEl.classList.add("show");
+}
+
+function hideFinalResult() {
+  finalResultEl.classList.remove("show");
+  finalResultEl.classList.add("hide");
+}
+
+  buildWheelCache();
+  drawWheel();
+canvas.addEventListener("pointerdown", (e) => {
+  e.preventDefault();
+  startHoldSpin();
+});
+
+window.addEventListener("pointerup", releaseHoldSpin);
+window.addEventListener("pointercancel", releaseHoldSpin);
+
+function setSpinningBackground() {
+  document.body.classList.add("spinning");
+}
+
+function resetBackgroundForResult() {
+  document.body.classList.remove("spinning");
+}
+</script>
+
