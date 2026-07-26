@@ -49,3 +49,8 @@ function updateCard(card, state) {
 function saveStates() {
     localStorage.setItem("cards", JSON.stringify(states));
 }
+
+fetch("https://cards-api.saenkazak.workers.dev")
+    .then(r => r.json())
+    .then(console.log)
+    .catch(console.error);
