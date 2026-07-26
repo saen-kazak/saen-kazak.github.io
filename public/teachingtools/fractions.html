@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Fraction Circle</title>
+
+<style>
+*{
+    box-sizing:border-box;
+}
+
+*:focus,
+*:focus-visible{
+    outline:none !important;
+}
+
+body{
+    margin:0;
+    font-family:"Trebuchet MS",Arial,sans-serif;
+    background:#eef8ff;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    min-height:100vh;
+    color:#234;
+}
+
+h1{
+    margin:10px 0;
+    color:#1976d2;
+}
+
+.controls{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+label{
+    font-size:1.2rem;
+    font-weight:bold;
+}
+
+input[type=range]{
+    width:300px;
+    margin-top:10px;
+    outline:none;
+}
+
+canvas{
+    background:white;
+    border-radius:50%;
+    box-shadow:0 8px 20px rgba(0,0,0,.15);
+    cursor:pointer;
+    outline:none;
+    user-select:none;
+    -webkit-user-select:none;
+}
+
+#fraction{
+    margin-top:25px;
+    font-size:3rem;
+    font-weight:bold;
+    color:#1565c0;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🍕 Fraction Circle</h1>
+
+<div class="controls">
+    <label>
+        Denominator:
+        <span id="denLabel">4</span>
+    </label><br>
+    <input id="slider" type="range" min="2" max="12" value="4">
+</div>
+
+<canvas id="canvas" width="450" height="450" tabindex="-1"></canvas>
+
+<div id="fraction"></div>
+
+<script>
+
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+
+const slider = document.getElementById("slider");
+const denLabel = document.getElementById("denLabel");
+const fraction = document.getElementById("fraction");
+
+let denominator = 4;
+let numerator = 1;
+
+function gcd(a,b){
+    while(b){
+        [a,b]=[b,a%b];
+    }
+    return a;
+}
+
+function updateText(){
+
+    const g = gcd(numerator, denominator);
+
+    if(g === 1){
+        fraction.textContent = `${numerator}/${denominator}`;
+    }else{
+        fraction.textContent =
+            `${numerator}/${denominator} = ${numerator/g}/${denominator/g}`;
+    }
+}
+
+function draw(){
+
+    ctx.clearRect(0,0,450,450);
+
+    const cx = 225;
+    const cy = 225;
+    const r = 180;
+
+    const step = Math.PI*2/denominator;
+
+    for(let i=0;i<denominator;i++){
+
+        const start = -Math.PI/2 + i*step;
+        const end = start + step;
+
+        ctx.beginPath();
+        ctx.moveTo(cx,cy);
+        ctx.arc(cx,cy,r,start,end);
+        ctx.closePath();
+
+        ctx.fillStyle = i < numerator
+            ? "#4FC3F7"
+            : "#FFF8DC";
+
+        ctx.fill();
+
+        ctx.lineWidth = 2;
+        ctx.strokeStyle = "#555";
+        ctx.stroke();
+    }
+
+    updateText();
+}
+
+slider.addEventListener("input",()=>{
+
+    denominator = Number(slider.value);
+
+    numerator = Math.min(numerator, denominator);
+    numerator = Math.max(numerator, 1);
+
+    denLabel.textContent = denominator;
+
+    draw();
+
+    slider.blur();
+});
+
+canvas.addEventListener("click",(e)=>{
+
+    const rect = canvas.getBoundingClientRect();
+
+    const x = e.clientX - rect.left - 225;
+    const y = e.clientY - rect.top - 225;
+
+    if(Math.sqrt(x*x+y*y) > 180) return;
+
+    let angle = Math.atan2(y,x) + Math.PI/2;
+
+    if(angle < 0)
+        angle += Math.PI*2;
+
+    const slice = Math.floor(angle / (Math.PI*2/denominator));
+
+    numerator = slice + 1;
+
+    draw();
+
+    canvas.blur();
+});
+
+draw();
+
+</script>
+
+</body>
+</html>
