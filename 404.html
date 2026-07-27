@@ -1,5 +1,18 @@
-<div id="root">
+<head>
+  <script>
+    var l = window.location;
 
-<h1>404 Not Found</h1>
-
-</div>
+    l.replace(
+      l.protocol +
+        "//" +
+        l.hostname +
+        (l.port ? ":" + l.port : "") +
+        "/?/" +
+        l.pathname.slice(1).replace(/&/g, "~and~") +
+        (l.search
+          ? "&" + l.search.slice(1).replace(/&/g, "~and~")
+          : "") +
+        l.hash
+    );
+  </script>
+</head>
