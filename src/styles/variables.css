@@ -1,0 +1,16 @@
+:root {
+    --bg: #0e0b16;
+
+    --surface: #1f1f3d;
+    --surface-light: #1f3f3d;
+
+    --text: #e0e0e0;
+    --text-muted: #b3b3b3;
+
+    --accent: #00ff85;
+    --accent-dark: #00dda5;
+    --accent-blue: #00e5ff;
+
+    --font-body: "Anaheim", sans-serif;
+    --font-heading: "Titillium Web", sans-serif;
+}

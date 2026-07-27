@@ -1,0 +1,31 @@
+@keyframes backgroundTransition {
+    0% {
+        background: #111133;
+    }
+    20% {
+        background: #113333;
+    }
+    40% {
+        background: #113311;
+    }
+    60% {
+        background: #331111;
+    }
+    80% {
+        background: #333311;
+    }
+    100% {
+        background: #111133;
+    }
+
+}
+
+@keyframes projectHoverIn {
+    0% {background-color: #1f1f3d;}
+    100% {background-color: #1f3f3d;}
+}
+
+@keyframes projectHoverOut {
+    0% {background-color: #1f2f3d;}
+    100% {background-color: #1f1f3d;}
+}

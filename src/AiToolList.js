@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import './style.css';
+import './styles/index.css';
 import profilePic from './saenoooos.svg';
 
 const tools = [

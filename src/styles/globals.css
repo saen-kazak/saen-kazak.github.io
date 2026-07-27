@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Anaheim&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&family=Train+One&display=swap');
+
+body {
+    margin: 0;
+    font-family: 'Anaheim', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+}
+
+header {
+    padding: 1rem 2rem;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+a {
+    color: white;
+    text-underline-offset: 1vh;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    color: var(--text);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+footer {
+    background-color: #1f1f3d;
+    padding: 1rem 2rem;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer-container p {
+    font-size: 0.875rem;
+    color: #b3b3b3;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+.typewriter-text {
+    color: inherit;
+    word-break: break-word;
+}
+
+.subtext {
+    color: #25ffd5;
+    font-size: 2rem;
+}
+
+
+.csrevision {
+    color: white;
+    font-size: 1.3rem;
+    text-decoration: none;
+    font-family: Segoe UI, sans-serif;
+}
+
+.prize-img-desktop {
+border-radius:10px;
+width:100%;
+}
+
+.prize-img-mobile {
+display: none;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.hidden {
+    display: none;
+}

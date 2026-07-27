@@ -1,11 +1,11 @@
 import React from 'react';
-import './style.css';
+import './styles/index.css';
 import profilePic from './saenoooos.svg'
 
 function Nopage() {
     return (
         <div>
-            <header id="redirect-hero">
+            <header id="redirect-hero page-hero">
                 <div className="redirect-hero-container">
                     <img src={profilePic} className="redirect-profile-img"/>
                 </div>

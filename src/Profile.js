@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './style.css';
+import './styles/index.css';
 import profilePic from './saenoooos.svg';
 
 function Home() {
@@ -25,13 +25,13 @@ useEffect(() => {
     return (
         <>
             <meta name="viewport" content="width=device-width, initial-scale=1" />
-            <header id="hero">
+            <header className="page-hero hero flex">
                 <div className="hero-container">
                     <div className="profile-wrapper">
                         <img src={profilePic} className="profile-img" alt="Saen" />
                         <div className="profile-text-wrapper">
                             <h1>Hi there! I'm Saen.</h1>
-							<h2 className="typewritwer-wrapper">
+							<h2 className="typewriter-wrapper">
 								<span className="typewriter-text">{typedText}</span>
 							</h2>
                             <img src={profilePic} className="mobile-profile-img" alt="Saen" />
