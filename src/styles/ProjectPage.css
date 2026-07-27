@@ -1,3 +1,48 @@
+.projects {
+    margin-top: 0;
+}
+
+.projects-header {
+    color: white;
+    font-size: 3rem;
+	text-align:center;
+}
+
+.projects-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    margin-bottom: 10rem;
+}
+
+.project:hover {
+    animation-name:projectHoverIn;
+    animation-duration: 0.3s;
+    animation-fill-mode: both;
+}
+
+.project {
+    animation-name:projectHoverOut;
+    animation-duration: 0.3s;
+    animation-fill-mode: both;
+    padding: 1rem;
+    width: 40%;
+    text-align: left;
+    height: 45rem;
+    border-radius: 1rem;
+    text-decoration:none;
+}
+
+
+.project img {
+    max-width: 100%;
+    max-height: 70%;
+    border-radius: 0.3rem;
+    display: block;
+    margin: auto;
+}
+
 .project-description-container {
     display: flex;
     flex-direction: column;

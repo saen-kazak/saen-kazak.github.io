@@ -62,10 +62,14 @@ footer {
 }
 
 .subtext {
-    color: #25ffd5;
-    font-size: 2rem;
+    color: #cccc03;
+    font-size: 2.5rem;
+	line-height:1.5;
 }
 
+.subtext-wrapper {
+	margin:2rem 0;
+}
 
 .csrevision {
     color: white;
@@ -109,4 +113,18 @@ display: none;
 
 .hidden {
     display: none;
+}
+
+@media screen and (max-width: 768px) {
+	
+	.subtext {
+		font-size:1.7rem;
+	}
+	
+	.subtext-wrapper {
+		margin:2rem !important;
+		text-align:left !important;
+		
+		
+	}
 }
