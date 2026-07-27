@@ -7,7 +7,6 @@ import './index.css';
 import Profile from './Profile';
 import Maintenance from './Maintenance';
 import Nopage from './Nopage';
-import Projects from './Projects';
 import AiToolList from './AiToolList';
 import Blockmaster from './Blockmaster';
 import Queens from './Queens';
@@ -23,7 +22,6 @@ export default function App() {
                         element={
                             <>
                                 <Profile />
-                                <Projects />
                             </>
                         }
                     />
